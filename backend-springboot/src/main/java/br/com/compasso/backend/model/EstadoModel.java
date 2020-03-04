@@ -12,7 +12,7 @@ public class EstadoModel {
 	private long id;
 	
 	private String nome;
-
+	
 	public long getId() {
 		return id;
 	}

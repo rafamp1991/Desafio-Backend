@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.compasso.backend.controller.dto.ClienteDto;
 import br.com.compasso.backend.model.CidadeModel;
+import br.com.compasso.backend.model.ClienteModel;
+import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 
 @RestController
@@ -28,10 +31,11 @@ public class CidadeController {
 		return cidadeRepository.findByNome(nome);
 	}
 	
-//	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
-//	public CidadeModel GetByEstado(@PathVariable(value = "estado") String estado) {
-//		return cidadeRepository.findByEstado(estado);
-//	}
+	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
+	public CidadeModel GetByEstado(@PathVariable(value = "nome") String estado) {
+		
+		return cidadeRepository.findByEstado(estado);
+	}
 	
 //	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
 //	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {

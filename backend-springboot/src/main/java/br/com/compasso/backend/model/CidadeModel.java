@@ -3,6 +3,7 @@ package br.com.compasso.backend.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +15,9 @@ public class CidadeModel {
 	private long id;
 	
 	private String nome;
+	
+	@ManyToOne
+	private EstadoModel estadoModel;
 	
 	public long getId() {
 		return id;
@@ -29,5 +33,13 @@ public class CidadeModel {
 	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public EstadoModel getEstadoModel() {
+		return estadoModel;
+	}
+
+	public void setEstadoModel(EstadoModel estadoModel) {
+		this.estadoModel = estadoModel;
 	}
 }
