@@ -38,7 +38,6 @@ public class ClienteController {
 		ClienteModel clienteModel = new ClienteModel();
 		clienteModel.setNome(cliente.getNome());
 		clienteModel.setSobrenome(cliente.getSobrenome());
-		clienteModel.setCidadeNome(cliente.getCidadeNome());
 		return clienteRepository.save(clienteModel);
 	}
 	
@@ -47,7 +46,6 @@ public class ClienteController {
 		ClienteModel clienteModel = clienteRepository.findById(id);
 		clienteModel.setNome(cliente.getNome());
 		clienteModel.setSobrenome(cliente.getSobrenome());
-		clienteModel.setCidadeNome(cliente.getCidadeNome());
 		return clienteRepository.save(clienteModel);
 	}
 	

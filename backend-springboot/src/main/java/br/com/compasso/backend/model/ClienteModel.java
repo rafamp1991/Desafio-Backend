@@ -5,8 +5,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +20,6 @@ public class ClienteModel {
 	private String sexo;
 	private Date dataDeNascimento;
 	private int idade;
-	
-	@OneToOne
-	@JoinColumn(name = "id")
-	private CidadeModel cidadeNome;
 	
 	public long getId() {
 		return id;
@@ -73,13 +67,5 @@ public class ClienteModel {
 	
 	public void setIdade(int idade) {
 		this.idade = idade;
-	}
-
-	public CidadeModel getCidadeNome() {
-		return cidadeNome;
-	}
-
-	public void setCidadeNome(CidadeModel cidadeNome) {
-		this.cidadeNome = cidadeNome;
 	}
 }

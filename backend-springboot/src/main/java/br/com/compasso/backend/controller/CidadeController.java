@@ -16,28 +16,28 @@ import br.com.compasso.backend.repository.CidadeRepository;
 public class CidadeController {
 
 	@Autowired
-	private CidadeRepository cidadesRepository;
+	private CidadeRepository cidadeRepository;
 	
 	@RequestMapping(value = "/cidades", method = RequestMethod.GET)
     public List<CidadeModel> getCidadesModels() {
-        return cidadesRepository.findAll();
+        return cidadeRepository.findAll();
     }
 	
 	@RequestMapping(value = "/cidades/{nome}", method = RequestMethod.GET)
 	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
-		return cidadesRepository.findByNome(nome);
+		return cidadeRepository.findByNome(nome);
 	}
 	
 //	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
 //	public CidadeModel GetByEstado(@PathVariable(value = "estado") String estado) {
-//		return cidadesRepository.findByEstado(estado);
+//		return cidadeRepository.findByEstado(estado);
 //	}
 	
-	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
-	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
-		CidadeModel cidadesModel = new CidadeModel();
-		cidadesModel.setNome(cidade.getNome());
-		cidadesModel.setEstado(cidade.getEstado());
-		return cidadesRepository.save(cidadesModel);
-	}
+//	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
+//	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
+//		CidadeModel cidadesModel = new CidadeModel();
+//		cidadesModel.setNome(cidade.getNome());
+//		//cidadesModel.setEstadoModel(cidade.getEstadoModel());
+//		return cidadeRepository.save(cidadesModel);
+//	}
 }
