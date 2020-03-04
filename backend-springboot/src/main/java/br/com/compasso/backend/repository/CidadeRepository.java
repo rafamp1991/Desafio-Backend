@@ -1,4 +1,4 @@
-package br.com.compasso.backend.desafio.repository;
+package br.com.compasso.backend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,5 +10,5 @@ public interface CidadeRepository extends JpaRepository<CidadeModel, Long> {
 	
 	CidadeModel findByNome(String nome);
 	
-	CidadeModel deleteById(long id);
+	CidadeModel findByEstado(String estado);
 }

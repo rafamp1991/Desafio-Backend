@@ -1,30 +1,17 @@
-package br.com.compasso.backend.model;
+package br.com.compasso.backend.controller.dto;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import br.com.compasso.backend.model.CidadeModel;
 
-@Entity
-@Table(name = "clientes")
-public class ClienteModel {
+public class ClienteDto {
 
-	@Id
-	@GeneratedValue
 	private long id;
-	
 	private String nome;
 	private String sobrenome;
 	private String sexo;
 	private Date dataDeNascimento;
 	private int idade;
-	
-	@OneToOne
-	@JoinColumn(name = "id")
 	private CidadeModel cidadeNome;
 	
 	public long getId() {
@@ -74,7 +61,7 @@ public class ClienteModel {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-
+	
 	public CidadeModel getCidadeNome() {
 		return cidadeNome;
 	}

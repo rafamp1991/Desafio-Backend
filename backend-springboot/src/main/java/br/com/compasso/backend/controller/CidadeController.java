@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.compasso.backend.controller.dto.CidadeDto;
-import br.com.compasso.backend.desafio.repository.CidadeRepository;
 import br.com.compasso.backend.model.CidadeModel;
+import br.com.compasso.backend.repository.CidadeRepository;
 
 @RestController
 public class CidadeController {
@@ -25,9 +24,14 @@ public class CidadeController {
     }
 	
 	@RequestMapping(value = "/cidades/{nome}", method = RequestMethod.GET)
-	public CidadeModel GetById(@PathVariable(value = "nome") String nome) {
+	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
 		return cidadesRepository.findByNome(nome);
 	}
+	
+//	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
+//	public CidadeModel GetByEstado(@PathVariable(value = "estado") String estado) {
+//		return cidadesRepository.findByEstado(estado);
+//	}
 	
 	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
 	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
@@ -35,18 +39,5 @@ public class CidadeController {
 		cidadesModel.setNome(cidade.getNome());
 		cidadesModel.setEstado(cidade.getEstado());
 		return cidadesRepository.save(cidadesModel);
-	}
-	
-	@RequestMapping(value = "/cidades/{id}", method = RequestMethod.PUT)
-	public CidadeModel cidadesUpdate(@PathVariable(value = "id") long id, @RequestBody CidadeDto cidade) {
-		CidadeModel cidadesModel = cidadesRepository.findById(id);
-		cidadesModel.setNome(cidade.getNome());
-		cidadesModel.setEstado(cidade.getEstado());
-		return cidadesRepository.save(cidadesModel);
-	}
-	
-	@RequestMapping(value = "/cidades/{id}", method = RequestMethod.DELETE)
-	public CidadeModel userDelete(@PathVariable(value = "id") long id) {
-		return cidadesRepository.deleteById(id);
 	}
 }
