@@ -26,6 +26,11 @@ public class CidadeController {
 		return cidadeRepository.findByNome(nome);
 	}
 	
+	@RequestMapping(value = "/cidades/estado/{id_estado}", method = RequestMethod.GET)
+	public List<CidadeModel> getCidadesByEstado(@PathVariable(value = "id_estado") long estadoId) {
+		return cidadeRepository.findByEstadoId(estadoId);
+	}
+	
 //	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
 //	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
 //		CidadeModel cidadesModel = new CidadeModel();

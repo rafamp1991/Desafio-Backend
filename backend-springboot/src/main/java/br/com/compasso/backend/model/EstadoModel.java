@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,14 +16,22 @@ import javax.persistence.Table;
 public class EstadoModel {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_estado;
 	
 	private String nome;
 	private String uf;
 
-	@OneToMany(mappedBy = "estadoModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<CidadeModel> cidades;  
+	//@OneToMany(mappedBy = "estadoModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private Set<CidadeModel> cidades;  
+	
+//	public Set<CidadeModel> getCidades() {
+//		return cidades;
+//	}
+//
+//	public void setCidades(Set<CidadeModel> cidades) {
+//		this.cidades = cidades;
+//	}
 	
 	public long getId_estado() {
 		return id_estado;
@@ -46,13 +55,5 @@ public class EstadoModel {
 
 	public void setUf(String uf) {
 		this.uf = uf;
-	}
-
-	public Set<CidadeModel> getCidades() {
-		return cidades;
-	}
-
-	public void setCidades(Set<CidadeModel> cidades) {
-		this.cidades = cidades;
 	}
 }

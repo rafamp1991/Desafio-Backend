@@ -6,9 +6,9 @@ import br.com.compasso.backend.model.EstadoModel;
 
 public interface EstadoRepository extends JpaRepository<EstadoModel, Long> {
 
-	EstadoModel findById(long id);
+	EstadoModel findById(long id_estado);
 	
 	EstadoModel findByNome(String nome);
 	
-	EstadoModel findByUf(String uf);
+	//EstadoModel findByUf(String uf);
 }
