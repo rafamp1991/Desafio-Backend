@@ -11,17 +11,17 @@ public class EstadoModel {
 	
 	@Id
 	@GeneratedValue
-	private long id_cidade;
+	private long id_estado;
 	
 	private String nome;
 	private String uf;
 
-	public long getId_cidade() {
-		return id_cidade;
+	public long getId_estado() {
+		return id_estado;
 	}
 
-	public void setId_cidade(long id_cidade) {
-		this.id_cidade = id_cidade;
+	public void setId_estado(long id_estado) {
+		this.id_estado = id_estado;
 	}
 
 	public String getNome() {
