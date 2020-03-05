@@ -3,6 +3,7 @@ package br.com.compasso.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,16 +21,10 @@ public class CidadeController {
         return cidadeRepository.findAll();
     }
 	
-//	@RequestMapping(value = "/cidades/{nome}", method = RequestMethod.GET)
-//	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
-//		return cidadeRepository.findByNome(nome);
-//	}
-//	
-//	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
-//	public CidadeModel GetByEstado(@PathVariable(value = "nome") EstadoModel estado) {
-//		
-//		return cidadeRepository.findByEstado(estado.getNome());
-//	}
+	@RequestMapping(value = "/cidades/{nome}", method = RequestMethod.GET)
+	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
+		return cidadeRepository.findByNome(nome);
+	}
 	
 //	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
 //	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {

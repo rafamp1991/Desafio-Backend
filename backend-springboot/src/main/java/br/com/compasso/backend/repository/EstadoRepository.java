@@ -9,4 +9,6 @@ public interface EstadoRepository extends JpaRepository<EstadoModel, Long> {
 	EstadoModel findById(long id);
 	
 	EstadoModel findByNome(String nome);
+	
+	EstadoModel findByUf(String uf);
 }

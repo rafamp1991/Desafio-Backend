@@ -1,8 +1,13 @@
 package br.com.compasso.backend.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +21,9 @@ public class EstadoModel {
 	private String nome;
 	private String uf;
 
+	@OneToMany(mappedBy = "estadoModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<CidadeModel> cidades;  
+	
 	public long getId_estado() {
 		return id_estado;
 	}
@@ -38,5 +46,13 @@ public class EstadoModel {
 
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+
+	public Set<CidadeModel> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(Set<CidadeModel> cidades) {
+		this.cidades = cidades;
 	}
 }
