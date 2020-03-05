@@ -13,7 +13,7 @@ public class CidadeModel {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private long id_cidade;
 	
 	private String nome;
 	private Double latitude;
@@ -24,14 +24,14 @@ public class CidadeModel {
 	@JoinColumn(name = "id_estado")
 	private EstadoModel estadoModel;
 	
-	public long getId() {
-		return id;
+	public long getId_cidade() {
+		return id_cidade;
 	}
-	
-	public void setId(long id) {
-		this.id = id;
+
+	public void setId_cidade(long id_cidade) {
+		this.id_cidade = id_cidade;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}

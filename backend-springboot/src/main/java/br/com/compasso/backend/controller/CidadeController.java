@@ -3,16 +3,10 @@ package br.com.compasso.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.compasso.backend.controller.dto.ClienteDto;
 import br.com.compasso.backend.model.CidadeModel;
-import br.com.compasso.backend.model.ClienteModel;
-import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 
 @RestController
@@ -26,16 +20,16 @@ public class CidadeController {
         return cidadeRepository.findAll();
     }
 	
-	@RequestMapping(value = "/cidades/{nome}", method = RequestMethod.GET)
-	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
-		return cidadeRepository.findByNome(nome);
-	}
-	
-	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
-	public CidadeModel GetByEstado(@PathVariable(value = "nome") String nome) {
-		
-		return cidadeRepository.findByNomeEstado(nome);
-	}
+//	@RequestMapping(value = "/cidades/{nome}", method = RequestMethod.GET)
+//	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
+//		return cidadeRepository.findByNome(nome);
+//	}
+//	
+//	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
+//	public CidadeModel GetByEstado(@PathVariable(value = "nome") EstadoModel estado) {
+//		
+//		return cidadeRepository.findByEstado(estado.getNome());
+//	}
 	
 //	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
 //	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
