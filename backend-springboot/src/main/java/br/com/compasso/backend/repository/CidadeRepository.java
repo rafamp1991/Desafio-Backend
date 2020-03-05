@@ -8,7 +8,7 @@ import br.com.compasso.backend.model.CidadeModel;
 
 public interface CidadeRepository extends JpaRepository<CidadeModel, Long> {
 	
-	CidadeModel findById(long id_cidade);
+	CidadeModel findById(long cidadeId);
 	
 	CidadeModel findByNome(String nome);
 

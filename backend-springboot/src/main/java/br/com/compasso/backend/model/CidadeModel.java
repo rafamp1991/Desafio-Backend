@@ -2,12 +2,9 @@ package br.com.compasso.backend.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,16 +13,13 @@ public class CidadeModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_cidade;
+	@Column(name="id_cidade")
+	private long cidadeId;
 	
 	private String nome;
 	private Double latitude;
 	private Double longitude;
 	private Boolean capital;
-	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "id_estado")
-//	private EstadoModel estadoModel;
 	
 	@Column(name = "id_estado")
 	private long estadoId;
@@ -38,12 +32,12 @@ public class CidadeModel {
 		this.estadoId = estadoId;
 	}
 
-	public long getId_cidade() {
-		return id_cidade;
+	public long getCidadeId() {
+		return cidadeId;
 	}
 
-	public void setId_cidade(long id_cidade) {
-		this.id_cidade = id_cidade;
+	public void setCidadeId(long cidadeId) {
+		this.cidadeId = cidadeId;
 	}
 
 	public String getNome() {
@@ -77,12 +71,4 @@ public class CidadeModel {
 	public void setCapital(Boolean capital) {
 		this.capital = capital;
 	}
-
-//	public EstadoModel getEstadoModel() {
-//		return estadoModel;
-//	}
-//
-//	public void setEstadoModel(EstadoModel estadoModel) {
-//		this.estadoModel = estadoModel;
-//	}
 }
