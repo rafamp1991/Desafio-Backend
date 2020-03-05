@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,11 +32,19 @@ public class CidadeController {
 		return cidadeRepository.findByEstadoId(estadoId);
 	}
 	
+	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
+	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
+		CidadeModel cidadesModel = new CidadeModel();
+		return cidadeRepository.save(cidadesModel);
+	}
+	
 //	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
 //	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
 //		CidadeModel cidadesModel = new CidadeModel();
 //		cidadesModel.setNome(cidade.getNome());
-//		//cidadesModel.setEstadoModel(cidade.getEstadoModel());
+//		cidadesModel.setLatitude(cidade.getLatitude());
+//		cidadesModel.setLongitude(cidade.getLongitude());
+//		cidadesModel.setCapital(cidade.getCapital());
 //		return cidadeRepository.save(cidadesModel);
 //	}
 }
