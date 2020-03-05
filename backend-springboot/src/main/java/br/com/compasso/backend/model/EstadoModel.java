@@ -3,8 +3,10 @@ package br.com.compasso.backend.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "estados")
 public class EstadoModel {
 	
 	@Id
@@ -12,6 +14,7 @@ public class EstadoModel {
 	private long id;
 	
 	private String nome;
+	private String uf;
 	
 	public long getId() {
 		return id;
@@ -27,5 +30,13 @@ public class EstadoModel {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 }

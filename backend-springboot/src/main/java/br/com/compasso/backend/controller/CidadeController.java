@@ -32,9 +32,9 @@ public class CidadeController {
 	}
 	
 	@RequestMapping(value = "/cidades/{estado}", method = RequestMethod.GET)
-	public CidadeModel GetByEstado(@PathVariable(value = "nome") String estado) {
+	public CidadeModel GetByEstado(@PathVariable(value = "nome") String nome) {
 		
-		return cidadeRepository.findByEstado(estado);
+		return cidadeRepository.findByNomeEstado(nome);
 	}
 	
 //	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
