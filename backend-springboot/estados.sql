@@ -1,5 +1,5 @@
 CREATE TABLE estados(
-    id_estado INT NOT NULL,
+    id_estado SERIAL NOT NULL,
     uf VARCHAR(2) NOT NULL,
     nome VARCHAR(100) NOT NULL,
     PRIMARY KEY (id_estado)

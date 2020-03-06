@@ -13,7 +13,7 @@ public class EstadoModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_estado")
+	@Column(name="id_estado", unique = true, nullable = false)
 	private long estadoId;
 	
 	private String nome;

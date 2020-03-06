@@ -35,16 +35,11 @@ public class CidadeController {
 	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
 	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
 		CidadeModel cidadesModel = new CidadeModel();
+		cidadesModel.setNome(cidade.getNome());
+		cidadesModel.setLatitude(cidade.getLatitude());
+		cidadesModel.setLongitude(cidade.getLongitude());
+		cidadesModel.setCapital(cidade.getCapital());
+		cidadesModel.setEstadoId(cidade.getEstadoId());
 		return cidadeRepository.save(cidadesModel);
 	}
-	
-//	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
-//	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
-//		CidadeModel cidadesModel = new CidadeModel();
-//		cidadesModel.setNome(cidade.getNome());
-//		cidadesModel.setLatitude(cidade.getLatitude());
-//		cidadesModel.setLongitude(cidade.getLongitude());
-//		cidadesModel.setCapital(cidade.getCapital());
-//		return cidadeRepository.save(cidadesModel);
-//	}
 }

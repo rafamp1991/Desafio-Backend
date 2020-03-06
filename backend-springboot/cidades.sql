@@ -1,5 +1,5 @@
 CREATE TABLE cidades(
-    id_cidade INT NOT NULL,
+    id_cidade SERIAL NOT NULL,
     nome VARCHAR(100) NOT NULL,
     latitude FLOAT(8) NOT NULL,
     longitude FLOAT(8) NOT NULL,
