@@ -21,14 +21,13 @@ public class EstadoController {
         return estadoRepository.findAll();
     }
 	
-	@RequestMapping(value = "/estados/{nome}", method = RequestMethod.GET)
+	@RequestMapping(value = "/estadoNome/{nome}", method = RequestMethod.GET)
 	public EstadoModel GetByEstado(@PathVariable(value = "nome") String nome) {
 		return estadoRepository.findByNome(nome);
 	}
 	
-//	@RequestMapping(value = "/estados/{uf}", method = RequestMethod.GET)
-//	public EstadoModel GetByEstadoUf(@PathVariable(value = "uf") String uf) {
-//		
-//		return estadoRepository.findByUf(uf);
-//	}
+	@RequestMapping(value = "/estadoUf/{uf}", method = RequestMethod.GET)
+	public EstadoModel GetByUf(@PathVariable(value = "uf") String uf) {
+		return estadoRepository.findByUf(uf);
+	}
 }

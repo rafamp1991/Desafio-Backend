@@ -23,40 +23,40 @@ public class CidadeController {
         return cidadeRepository.findAll();
     }
 	
-	@RequestMapping(value = "/cidades/{nome}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cidade/{nome}", method = RequestMethod.GET)
 	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
 		return cidadeRepository.findByNome(nome);
 	}
 	
-	@RequestMapping(value = "/cidades/estado/{id_estado}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cidade/estado/{id_estado}", method = RequestMethod.GET)
 	public List<CidadeModel> getCidadesByEstado(@PathVariable(value = "id_estado") long estadoId) {
 		return cidadeRepository.findByEstadoId(estadoId);
 	}
 	
-	@RequestMapping(value = "/cidades", method = RequestMethod.POST)
-	public CidadeModel cidadesCreate(@RequestBody CidadeModel cidade) {
-		CidadeModel cidadesModel = new CidadeModel();
-		cidadesModel.setNome(cidade.getNome());
-		cidadesModel.setLatitude(cidade.getLatitude());
-		cidadesModel.setLongitude(cidade.getLongitude());
-		cidadesModel.setCapital(cidade.getCapital());
-		cidadesModel.setEstadoId(cidade.getEstadoId());
-		return cidadeRepository.save(cidadesModel);
+	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
+	public CidadeModel cidadeCreate(@RequestBody CidadeModel cidade) {
+		CidadeModel cidadeModel = new CidadeModel();
+		cidadeModel.setNome(cidade.getNome());
+		cidadeModel.setLatitude(cidade.getLatitude());
+		cidadeModel.setLongitude(cidade.getLongitude());
+		cidadeModel.setCapital(cidade.getCapital());
+		cidadeModel.setEstadoId(cidade.getEstadoId());
+		return cidadeRepository.save(cidadeModel);
 	}
 	
-	@RequestMapping(value = "/cidades/{id_cidade}", method = RequestMethod.PUT)
-	public CidadeModel userUpdate(@PathVariable(value = "id_cidade") long cidadeId, @RequestBody CidadeJsonModel cidade) {
-		CidadeModel cidadesModel = cidadeRepository.findById(cidadeId);
-		cidadesModel.setNome(cidade.getNome());
-		cidadesModel.setLatitude(cidade.getLatitude());
-		cidadesModel.setLongitude(cidade.getLongitude());
-		cidadesModel.setCapital(cidade.getCapital());
-		cidadesModel.setEstadoId(cidade.getEstadoId());
-		return cidadeRepository.save(cidadesModel);
+	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
+	public CidadeModel cidadeUpdate(@PathVariable(value = "id_cidade") long cidadeId, @RequestBody CidadeJsonModel cidade) {
+		CidadeModel cidadeModel = cidadeRepository.findById(cidadeId);
+		cidadeModel.setNome(cidade.getNome());
+		cidadeModel.setLatitude(cidade.getLatitude());
+		cidadeModel.setLongitude(cidade.getLongitude());
+		cidadeModel.setCapital(cidade.getCapital());
+		cidadeModel.setEstadoId(cidade.getEstadoId());
+		return cidadeRepository.save(cidadeModel);
 	}
 	
-//	@RequestMapping(value = "/cidades/{id}", method = RequestMethod.DELETE)
-//	public CidadeModel userDelete(@PathVariable(value = "id_estado") long estadoId) {
-//		return cidadeRepository.deleteById(estadoId);
-//	}
+	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
+	public CidadeModel cidadeDelete(@PathVariable(value = "id_cidade") long cidadeId) {
+		return cidadeRepository.deleteById(cidadeId);
+	}
 }
