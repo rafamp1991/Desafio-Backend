@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "clientes")
 public class ClienteModel {
@@ -21,6 +23,7 @@ public class ClienteModel {
 	private String sobrenome;
 	private String sexo;
 	
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date dataNascimento;
 	private int idade;
 	

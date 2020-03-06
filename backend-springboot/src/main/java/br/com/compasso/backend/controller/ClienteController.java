@@ -23,12 +23,12 @@ public class ClienteController {
         return clienteRepository.findAll();
     }
 	
-	@RequestMapping(value = "/cliente/{nome}", method = RequestMethod.GET)
+	@RequestMapping(value = "/clienteNome/{nome}", method = RequestMethod.GET)
 	public ClienteModel GetByNome(@PathVariable(value = "nome") String nome) {
 		return clienteRepository.findByNome(nome);
 	}
 	
-	@RequestMapping(value = "/cliente/{clienteId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/clienteId/{clienteId}", method = RequestMethod.GET)
 	public ClienteModel GetById(@PathVariable(value = "clienteId") long clienteId) {
 		return clienteRepository.findById(clienteId);
 	}
