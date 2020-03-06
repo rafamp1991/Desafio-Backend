@@ -30,7 +30,7 @@ public class CidadeController {
 	
 	@RequestMapping(value = "/cidade/estado/{id_estado}", method = RequestMethod.GET)
 	public List<CidadeModel> getCidadesByEstado(@PathVariable(value = "id_estado") long estadoId) {
-		return cidadeRepository.findByEstadoId(estadoId);
+		return cidadeRepository.findByEstadoId(estadoId); 
 	}
 	
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)

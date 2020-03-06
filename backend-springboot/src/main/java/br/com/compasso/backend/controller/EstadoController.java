@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.compasso.backend.model.EstadoJsonModel;
 import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.EstadoRepository;
 
@@ -29,5 +32,28 @@ public class EstadoController {
 	@RequestMapping(value = "/estadoUf/{uf}", method = RequestMethod.GET)
 	public EstadoModel GetByUf(@PathVariable(value = "uf") String uf) {
 		return estadoRepository.findByUf(uf);
+	}
+	
+	@RequestMapping(value = "/estado", method = RequestMethod.POST)
+	public EstadoModel estadoCreate(@RequestBody EstadoModel estado) {
+		EstadoModel estadoModel = new EstadoModel();
+		estadoModel.setNome(estado.getNome());
+		estadoModel.setUf(estado.getUf());
+		
+		return estadoRepository.save(estadoModel);
+	}
+	
+	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.PUT)
+	public EstadoModel estadoUpdate(@PathVariable(value = "id_estado") long estadoId, @RequestBody EstadoJsonModel estado) {
+		EstadoModel estadoModel = estadoRepository.findById(estadoId);
+		estadoModel.setNome(estado.getNome());
+		estadoModel.setUf(estado.getUf());
+		
+		return estadoRepository.save(estadoModel);
+	}
+	
+	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.DELETE)
+	public EstadoModel estadoDelete(@PathVariable(value = "id_estado") long estadoId) {
+		return estadoRepository.deleteById(estadoId);
 	}
 }
