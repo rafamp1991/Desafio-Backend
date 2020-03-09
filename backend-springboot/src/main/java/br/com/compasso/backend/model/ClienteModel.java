@@ -3,20 +3,25 @@ package br.com.compasso.backend.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "clientes")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ClienteModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_cliente")
+	@Column(name = "id_cliente")
 	private long clienteId;
 	
 	private String nome;
@@ -24,11 +29,21 @@ public class ClienteModel {
 	private String sexo;
 	
 	@JsonFormat(pattern="dd-MM-yyyy")
+	@Column(name = "datanascimento")
 	private Date dataNascimento;
 	private int idade;
 	
-	@Column(name = "id_cidade")
-	private long cidadeId;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_cidade")
+	private CidadeModel cidadeModel;
+	
+	public CidadeModel getCidadeModel() {
+		return cidadeModel;
+	}
+
+	public void setCidadeModel(CidadeModel cidadeModel) {
+		this.cidadeModel = cidadeModel;
+	}
 
 	public long getClienteId() {
 		return clienteId;
@@ -76,13 +91,5 @@ public class ClienteModel {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
-	}
-
-	public long getCidadeId() {
-		return cidadeId;
-	}
-
-	public void setCidadeId(long cidadeId) {
-		this.cidadeId = cidadeId;
 	}
 }

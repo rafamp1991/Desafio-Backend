@@ -6,14 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "cidades")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CidadeModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_cidade")
+	@Column(name = "id_cidade")
 	private long cidadeId;
 	
 	private String nome;
@@ -23,7 +25,7 @@ public class CidadeModel {
 	
 	@Column(name = "id_estado")
 	private long estadoId;
-	
+
 	public long getEstadoId() {
 		return estadoId;
 	}

@@ -15,4 +15,6 @@ public interface CidadeRepository extends JpaRepository<CidadeModel, Long> {
 	List<CidadeModel> findByEstadoId(long estadoId);
 	
 	CidadeModel deleteById(long cidadeId);
+	
+	
 }

@@ -1,14 +1,12 @@
 package br.com.compasso.backend.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.compasso.backend.model.ClienteJsonModel;
 import br.com.compasso.backend.model.ClienteModel;
 import br.com.compasso.backend.repository.ClienteRepository;
 
@@ -41,19 +39,19 @@ public class ClienteController {
 		clienteModel.setSexo(cliente.getSexo());
 		clienteModel.setDataNascimento(cliente.getDataNascimento());
 		clienteModel.setIdade(cliente.getIdade());
-		clienteModel.setCidadeId(cliente.getCidadeId());
+		clienteModel.setCidadeModel(cliente.getCidadeModel());
 		return clienteRepository.save(clienteModel);
 	}
 	
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.PUT)
-	public ClienteModel clienteUpdate(@PathVariable(value = "id_cliente") long clienteId, @RequestBody ClienteJsonModel cliente) {
+	public ClienteModel clienteUpdate(@PathVariable(value = "id_cliente") long clienteId, @RequestBody ClienteModel cliente) {
 		ClienteModel clienteModel = clienteRepository.findById(clienteId);
 		clienteModel.setNome(cliente.getNome());
 		clienteModel.setSobrenome(cliente.getSobrenome());
 		clienteModel.setSexo(cliente.getSexo());
 		clienteModel.setDataNascimento(cliente.getDataNascimento());
 		clienteModel.setIdade(cliente.getIdade());
-		clienteModel.setCidadeId(cliente.getCidadeId());
+		clienteModel.setCidadeModel(cliente.getCidadeModel());
 		return clienteRepository.save(clienteModel);
 	}
 	

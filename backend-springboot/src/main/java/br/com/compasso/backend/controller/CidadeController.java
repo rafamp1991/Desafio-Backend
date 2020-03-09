@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.compasso.backend.model.CidadeJsonModel;
 import br.com.compasso.backend.model.CidadeModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 
@@ -45,7 +43,7 @@ public class CidadeController {
 	}
 	
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
-	public CidadeModel cidadeUpdate(@PathVariable(value = "id_cidade") long cidadeId, @RequestBody CidadeJsonModel cidade) {
+	public CidadeModel cidadeUpdate(@PathVariable(value = "id_cidade") long cidadeId, @RequestBody CidadeModel cidade) {
 		CidadeModel cidadeModel = cidadeRepository.findById(cidadeId);
 		cidadeModel.setNome(cidade.getNome());
 		cidadeModel.setLatitude(cidade.getLatitude());
