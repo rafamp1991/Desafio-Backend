@@ -39,6 +39,7 @@ public class CidadeController {
 		cidadeModel.setLongitude(cidade.getLongitude());
 		cidadeModel.setCapital(cidade.getCapital());
 		cidadeModel.setEstadoId(cidade.getEstadoId());
+//		cidadeModel.setEstadoModel(cidade.getEstadoModel());
 		return cidadeRepository.save(cidadeModel);
 	}
 	
@@ -50,6 +51,7 @@ public class CidadeController {
 		cidadeModel.setLongitude(cidade.getLongitude());
 		cidadeModel.setCapital(cidade.getCapital());
 		cidadeModel.setEstadoId(cidade.getEstadoId());
+//		cidadeModel.setEstadoModel(cidade.getEstadoModel());
 		return cidadeRepository.save(cidadeModel);
 	}
 	

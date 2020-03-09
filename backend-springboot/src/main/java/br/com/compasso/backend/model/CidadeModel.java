@@ -2,9 +2,12 @@ package br.com.compasso.backend.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -25,6 +28,10 @@ public class CidadeModel {
 	
 	@Column(name = "id_estado")
 	private long estadoId;
+	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id_estado")
+//	private EstadoModel estadoModel;
 
 	public long getEstadoId() {
 		return estadoId;
@@ -73,4 +80,12 @@ public class CidadeModel {
 	public void setCapital(Boolean capital) {
 		this.capital = capital;
 	}
+
+//	public EstadoModel getEstadoModel() {
+//		return estadoModel;
+//	}
+//
+//	public void setEstadoModel(EstadoModel estadoModel) {
+//		this.estadoModel = estadoModel;
+//	}
 }

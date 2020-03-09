@@ -7,13 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "estados")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EstadoModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_estado", unique = true, nullable = false)
+	@Column(name = "id_estado")
 	private long estadoId;
 	
 	private String nome;
