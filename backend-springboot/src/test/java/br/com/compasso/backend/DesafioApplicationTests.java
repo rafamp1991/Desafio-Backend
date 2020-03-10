@@ -1,4 +1,4 @@
-package br.com.compasso.desafio;
+package br.com.compasso.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "cidades")
@@ -26,20 +27,10 @@ public class CidadeModel {
 	private Double longitude;
 	private Boolean capital;
 	
-	@Column(name = "id_estado")
-	private long estadoId;
-	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "id_estado")
-//	private EstadoModel estadoModel;
-
-	public long getEstadoId() {
-		return estadoId;
-	}
-
-	public void setEstadoId(long estadoId) {
-		this.estadoId = estadoId;
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_estado")
+	@JsonManagedReference
+	private EstadoModel estadoModel;
 
 	public long getCidadeId() {
 		return cidadeId;
@@ -81,11 +72,11 @@ public class CidadeModel {
 		this.capital = capital;
 	}
 
-//	public EstadoModel getEstadoModel() {
-//		return estadoModel;
-//	}
-//
-//	public void setEstadoModel(EstadoModel estadoModel) {
-//		this.estadoModel = estadoModel;
-//	}
+	public EstadoModel getEstadoModel() {
+		return estadoModel;
+	}
+
+	public void setEstadoModel(EstadoModel estadoModel) {
+		this.estadoModel = estadoModel;
+	}
 }

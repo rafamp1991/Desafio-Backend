@@ -1,6 +1,6 @@
 package br.com.compasso.backend.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "clientes")
@@ -30,7 +31,7 @@ public class ClienteModel {
 	
 	@JsonFormat(pattern="dd-MM-yyyy")
 	@Column(name = "datanascimento")
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 	private int idade;
 	
 	@OneToOne(fetch = FetchType.LAZY)
@@ -77,11 +78,11 @@ public class ClienteModel {
 		this.sexo = sexo;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

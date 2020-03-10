@@ -31,17 +31,35 @@ public class ClienteController {
 		return clienteRepository.findById(clienteId);
 	}
 	
-	@RequestMapping(value = "/cliente", method = RequestMethod.POST)
-	public ClienteModel cidadeCreate(@RequestBody ClienteModel cliente) {
-		ClienteModel clienteModel = new ClienteModel();
-		clienteModel.setNome(cliente.getNome());
-		clienteModel.setSobrenome(cliente.getSobrenome());
-		clienteModel.setSexo(cliente.getSexo());
-		clienteModel.setDataNascimento(cliente.getDataNascimento());
-		clienteModel.setIdade(cliente.getIdade());
-		clienteModel.setCidadeModel(cliente.getCidadeModel());
-		return clienteRepository.save(clienteModel);
-	}
+//	@RequestMapping(value = "/cliente", method = RequestMethod.POST)
+//	public ClienteModel clienteCreate(@RequestBody ClienteModel cliente) {
+//		ClienteModel buscaCliente = clienteRepository.findbyNomeAndSobrenome(cliente.getNome(), cliente.getSobrenome());
+//		
+//		if (buscaCliente.equals(null)) {
+//			ClienteModel clienteModel = new ClienteModel();
+//			clienteModel.setNome(cliente.getNome());
+//			clienteModel.setSobrenome(cliente.getSobrenome());
+//			clienteModel.setSexo(cliente.getSexo());
+//			clienteModel.setDataNascimento(cliente.getDataNascimento());
+//			clienteModel.setIdade(cliente.getIdade());
+//			clienteModel.setCidadeModel(cliente.getCidadeModel());
+//			return clienteRepository.save(clienteModel);
+//		}
+//		
+//		return false;
+//	}
+	
+//	@RequestMapping(value = "/cliente", method = RequestMethod.POST)
+//	public ClienteModel clienteCreate(@RequestBody ClienteModel cliente) {
+//		ClienteModel clienteModel = new ClienteModel();
+//		clienteModel.setNome(cliente.getNome());
+//		clienteModel.setSobrenome(cliente.getSobrenome());
+//		clienteModel.setSexo(cliente.getSexo());
+//		clienteModel.setDataNascimento(cliente.getDataNascimento());
+//		clienteModel.setIdade(cliente.getIdade());
+//		clienteModel.setCidadeModel(cliente.getCidadeModel());
+//		return clienteRepository.save(clienteModel);
+//	}
 	
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.PUT)
 	public ClienteModel clienteUpdate(@PathVariable(value = "id_cliente") long clienteId, @RequestBody ClienteModel cliente) {
