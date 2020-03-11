@@ -10,9 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "estados")
@@ -31,7 +30,7 @@ public class EstadoModel {
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado")
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<CidadeModel> cidades;
 	
 	public long getEstadoId() {

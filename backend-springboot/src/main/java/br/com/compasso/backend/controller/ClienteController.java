@@ -32,17 +32,25 @@ public class ClienteController {
 	}
 	
 	@RequestMapping(value = "/cliente", method = RequestMethod.POST)
-	public ClienteModel clienteCreate(@RequestBody ClienteModel cliente) {
-		ClienteModel buscaCliente = clienteRepository.findByNomeAndSobrenome(cliente.getNome(), cliente.getSobrenome());
-		
-		ClienteModel clienteModel = new ClienteModel();
-		clienteModel.setNome(cliente.getNome());
-		clienteModel.setSobrenome(cliente.getSobrenome());
-		clienteModel.setSexo(cliente.getSexo());
-		clienteModel.setDataNascimento(cliente.getDataNascimento());
-		clienteModel.setIdade(cliente.getIdade());
-		clienteModel.setCidadeModel(cliente.getCidadeModel());
-		return clienteRepository.save(clienteModel);
+	public ClienteModel clienteCreate(@RequestBody ClienteModel cliente) throws Exception {
+		try {
+			ClienteModel buscaCliente = clienteRepository.findByNomeAndSobrenome(cliente.getNome(), cliente.getSobrenome());
+			
+			if (buscaCliente == null) {
+				ClienteModel clienteModel = new ClienteModel();
+				clienteModel.setNome(cliente.getNome());
+				clienteModel.setSobrenome(cliente.getSobrenome());
+				clienteModel.setSexo(cliente.getSexo());
+				clienteModel.setDataNascimento(cliente.getDataNascimento());
+				clienteModel.setIdade(cliente.getIdade());
+				clienteModel.setCidadeModel(cliente.getCidadeModel());
+				return clienteRepository.save(clienteModel);
+			} else {
+				throw new Exception();
+			}
+		} catch (Exception e) {
+			throw new Exception();
+		}
 	}
 	
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.PUT)
