@@ -36,6 +36,7 @@ public class ClienteModel {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cidade")
+	@JsonManagedReference
 	private CidadeModel cidadeModel;
 	
 	public CidadeModel getCidadeModel() {
