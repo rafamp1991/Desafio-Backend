@@ -22,7 +22,7 @@ public class ClienteModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
-	private long clienteId;
+	private Long clienteId;
 	
 	private String nome;
 	private String sobrenome;
@@ -37,7 +37,7 @@ public class ClienteModel {
 	@JoinColumn(name = "id_cidade")
 	@JsonBackReference
 	private CidadeModel cidadeModel;
-	
+
 	public CidadeModel getCidadeModel() {
 		return cidadeModel;
 	}
@@ -46,11 +46,11 @@ public class ClienteModel {
 		this.cidadeModel = cidadeModel;
 	}
 
-	public long getClienteId() {
+	public Long getClienteId() {
 		return clienteId;
 	}
 
-	public void setClienteId(long clienteId) {
+	public void setClienteId(Long clienteId) {
 		this.clienteId = clienteId;
 	}
 

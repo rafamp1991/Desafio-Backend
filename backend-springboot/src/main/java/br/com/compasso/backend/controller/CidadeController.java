@@ -3,6 +3,7 @@ package br.com.compasso.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,16 +23,19 @@ public class CidadeController {
 	@Autowired
 	private EstadoRepository estadoRepository;
 	
+	@CrossOrigin
 	@RequestMapping(value = "/cidades", method = RequestMethod.GET)
     public List<CidadeModel> getCidadesModels() {
         return cidadeRepository.findAll();
     }
 	
+	@CrossOrigin
 	@RequestMapping(value = "/cidade/{nome}", method = RequestMethod.GET)
 	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
 		return cidadeRepository.findByNome(nome);
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value = "/cidade/estadoId/{estadoId}", method = RequestMethod.GET)
 	public List<CidadeModel> getCidadesByEstadoId(@PathVariable(value = "estadoId") long estadoId) {
 		EstadoModel estadoModel = estadoRepository.findById(estadoId);
@@ -40,6 +44,7 @@ public class CidadeController {
 		return listaCidadeById;
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
 	public List<CidadeModel> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
 		EstadoModel estadoModel = estadoRepository.findByUf(uf);
@@ -48,6 +53,7 @@ public class CidadeController {
 		return listaCidadeByUf;
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
 	public List<CidadeModel> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
 		EstadoModel estadoModel = estadoRepository.findByNome(nome);
@@ -56,6 +62,7 @@ public class CidadeController {
 		return listaCidadeByNome;
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
 	public CidadeModel cidadeCreate(@RequestBody CidadeModel cidade) {
 		CidadeModel cidadeModel = new CidadeModel();
@@ -67,19 +74,21 @@ public class CidadeController {
 		return cidadeRepository.save(cidadeModel);
 	}
 	
-	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
-	public CidadeModel cidadeUpdate(@PathVariable(value = "id_cidade") long cidadeId, @RequestBody CidadeModel cidade) {
-		CidadeModel cidadeModel = cidadeRepository.findById(cidadeId);
-		cidadeModel.setNome(cidade.getNome());
-		cidadeModel.setLatitude(cidade.getLatitude());
-		cidadeModel.setLongitude(cidade.getLongitude());
-		cidadeModel.setCapital(cidade.getCapital());
-		cidadeModel.setEstadoModel(cidade.getEstadoModel());
-		return cidadeRepository.save(cidadeModel);
-	}
-	
-	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
-	public CidadeModel cidadeDelete(@PathVariable(value = "id_cidade") long cidadeId) {
-		return cidadeRepository.deleteById(cidadeId);
-	}
+//	@CrossOrigin
+//	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
+//	public CidadeModel cidadeUpdate(@PathVariable(value = "id_cidade") long cidadeId, @RequestBody CidadeModel cidade) {
+//		CidadeModel cidadeModel = cidadeRepository.findById(cidadeId);
+//		cidadeModel.setNome(cidade.getNome());
+//		cidadeModel.setLatitude(cidade.getLatitude());
+//		cidadeModel.setLongitude(cidade.getLongitude());
+//		cidadeModel.setCapital(cidade.getCapital());
+//		cidadeModel.setEstadoModel(cidade.getEstadoModel());
+//		return cidadeRepository.save(cidadeModel);
+//	}
+//	
+//	@CrossOrigin
+//	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
+//	public CidadeModel cidadeDelete(@PathVariable(value = "id_cidade") long cidadeId) {
+//		return cidadeRepository.deleteById(cidadeId);
+//	}
 }

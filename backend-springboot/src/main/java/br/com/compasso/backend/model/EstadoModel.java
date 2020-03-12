@@ -32,7 +32,7 @@ public class EstadoModel {
 	@JoinColumn(name = "id_estado")
 	@JsonManagedReference
 	private Set<CidadeModel> cidades;
-	
+
 	public long getEstadoId() {
 		return estadoId;
 	}

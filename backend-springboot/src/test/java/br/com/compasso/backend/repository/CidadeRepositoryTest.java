@@ -23,11 +23,11 @@ public class CidadeRepositoryTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     
-    @Test
-    public void findById() {
-    	CidadeModel cidade = cidadeRepository.findById(3100104);
-    	Assertions.assertThat(cidade.getCidadeId()).isEqualTo(3100104);
-    }
+//    @Test
+//    public void findById() {
+//    	CidadeModel cidade = cidadeRepository.findById(3100104);
+//    	Assertions.assertThat(cidade.getCidadeId()).isEqualTo(3100104);
+//    }
     
     @Test
     public void findByNome() {
