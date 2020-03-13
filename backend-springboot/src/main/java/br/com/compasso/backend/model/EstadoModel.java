@@ -10,34 +10,36 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "estados")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EstadoModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_estado")
-	private long estadoId;
+	private Long estadoId;
 	
 	@Column(name = "nome")
 	private String nome;
 	@Column(name = "uf")
 	private String uf;
 	
+	@JsonIgnore(true)
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado")
 	@JsonManagedReference
 	private Set<CidadeModel> cidades;
 
-	public long getEstadoId() {
+	public Long getEstadoId() {
 		return estadoId;
 	}
 
-	public void setEstadoId(long estadoId) {
+	public void setEstadoId(Long estadoId) {
 		this.estadoId = estadoId;
 	}
 

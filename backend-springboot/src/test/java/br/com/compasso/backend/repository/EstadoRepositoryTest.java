@@ -23,11 +23,11 @@ public class EstadoRepositoryTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     
-    @Test
-    public void findById() {
-    	EstadoModel estado = estadoRepository.findById(13);
-    	Assertions.assertThat(estado.getEstadoId()).isEqualTo(13);
-    }
+//    @Test
+//    public void findById() {
+//    	EstadoModel estado = estadoRepository.findById(13);
+//    	Assertions.assertThat(estado.getEstadoId()).isEqualTo(13);
+//    }
     
     @Test
     public void findByNome() {

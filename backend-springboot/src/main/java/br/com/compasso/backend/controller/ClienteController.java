@@ -32,11 +32,11 @@ public class ClienteController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/clienteNome/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<ClienteModel> GetByNome(@PathVariable(value = "nome") String nome) {
-		Optional<ClienteModel> cliente = clienteRepository.findByNome(nome);
-		if (cliente.isPresent()) {
-			return ResponseEntity.ok(cliente.get());
-		}
+	public ResponseEntity<List<ClienteModel>> GetByNome(@PathVariable(value = "nome") String nome) {
+		List<ClienteModel> listaCliente = clienteRepository.findByNome(nome);
+		if (listaCliente != null) {
+			return ResponseEntity.ok(listaCliente);
+		} 
 		
 		return ResponseEntity.notFound().build();
 	}
@@ -76,6 +76,7 @@ public class ClienteController {
 		Optional<ClienteModel> cliente = clienteRepository.findById(clienteId);
 		if (cliente.isPresent()) {
 			clienteRepository.deleteById(clienteId);
+			return ResponseEntity.status(HttpStatus.OK).build();
 		}
 		
 		return ResponseEntity.notFound().build();

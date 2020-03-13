@@ -29,9 +29,9 @@ public class CidadeRepositoryTest {
 //    	Assertions.assertThat(cidade.getCidadeId()).isEqualTo(3100104);
 //    }
     
-    @Test
-    public void findByNome() {
-    	CidadeModel cidade = cidadeRepository.findByNome("Abadia dos Dourados");
-    	Assertions.assertThat(cidade.getNome()).isEqualTo("Abadia dos Dourados");
-    }
+//    @Test
+//    public void findByNome() {
+//    	CidadeModel cidade = cidadeRepository.findByNome("Abadia dos Dourados");
+//    	Assertions.assertThat(cidade.getNome()).isEqualTo("Abadia dos Dourados");
+//    }
 }

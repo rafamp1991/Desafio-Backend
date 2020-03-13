@@ -2,7 +2,10 @@ package br.com.compasso.backend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,64 +34,72 @@ public class CidadeController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/{nome}", method = RequestMethod.GET)
-	public CidadeModel GetByNome(@PathVariable(value = "nome") String nome) {
-		return cidadeRepository.findByNome(nome);
-	}
-	
-	@CrossOrigin
-	@RequestMapping(value = "/cidade/estadoId/{estadoId}", method = RequestMethod.GET)
-	public List<CidadeModel> getCidadesByEstadoId(@PathVariable(value = "estadoId") long estadoId) {
-		EstadoModel estadoModel = estadoRepository.findById(estadoId);
-		List<CidadeModel> listaCidadeById = new ArrayList<>(); 
-		listaCidadeById.addAll(estadoModel.getCidades());
-		return listaCidadeById;
+	public ResponseEntity<List<CidadeModel>> getByNome(@PathVariable(value = "nome") String nome) {
+		List<CidadeModel> listaCidade = cidadeRepository.findByNome(nome);
+		if (listaCidade != null) {
+			return ResponseEntity.ok(listaCidade);
+		} 
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
-	public List<CidadeModel> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
-		EstadoModel estadoModel = estadoRepository.findByUf(uf);
-		List<CidadeModel> listaCidadeByUf = new ArrayList<>(); 
-		listaCidadeByUf.addAll(estadoModel.getCidades());
-		return listaCidadeByUf;
+	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
+		EstadoModel estado = estadoRepository.findByUf(uf);
+		if (estado != null) {
+			List<CidadeModel> listaCidade = new ArrayList<>(); 
+			listaCidade.addAll(estado.getCidades());
+			return ResponseEntity.ok(listaCidade);
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
-	public List<CidadeModel> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
-		EstadoModel estadoModel = estadoRepository.findByNome(nome);
-		List<CidadeModel> listaCidadeByNome = new ArrayList<>(); 
-		listaCidadeByNome.addAll(estadoModel.getCidades());
-		return listaCidadeByNome;
+	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
+		EstadoModel estado = estadoRepository.findByNome(nome);
+		if (estado != null) {
+			List<CidadeModel> listaCidade = new ArrayList<>(); 
+			listaCidade.addAll(estado.getCidades());
+			return ResponseEntity.ok(listaCidade);
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
-	public CidadeModel cidadeCreate(@RequestBody CidadeModel cidade) {
-		CidadeModel cidadeModel = new CidadeModel();
-		cidadeModel.setNome(cidade.getNome());
-		cidadeModel.setLatitude(cidade.getLatitude());
-		cidadeModel.setLongitude(cidade.getLongitude());
-		cidadeModel.setCapital(cidade.getCapital());
-		cidadeModel.setEstadoModel(cidade.getEstadoModel());
-		return cidadeRepository.save(cidadeModel);
+	public ResponseEntity<CidadeModel> cidadeCreate(@RequestBody CidadeModel cidade) {
+		Optional<CidadeModel> buscaCidade = cidadeRepository.findCidadeByNome(cidade.getNome());
+		if (buscaCidade.isPresent()) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		} else {
+			return ResponseEntity.ok(cidadeRepository.save(cidade));
+		}
 	}
 	
-//	@CrossOrigin
-//	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
-//	public CidadeModel cidadeUpdate(@PathVariable(value = "id_cidade") long cidadeId, @RequestBody CidadeModel cidade) {
-//		CidadeModel cidadeModel = cidadeRepository.findById(cidadeId);
-//		cidadeModel.setNome(cidade.getNome());
-//		cidadeModel.setLatitude(cidade.getLatitude());
-//		cidadeModel.setLongitude(cidade.getLongitude());
-//		cidadeModel.setCapital(cidade.getCapital());
-//		cidadeModel.setEstadoModel(cidade.getEstadoModel());
-//		return cidadeRepository.save(cidadeModel);
-//	}
-//	
-//	@CrossOrigin
-//	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
-//	public CidadeModel cidadeDelete(@PathVariable(value = "id_cidade") long cidadeId) {
-//		return cidadeRepository.deleteById(cidadeId);
-//	}
+	@CrossOrigin
+	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
+	public ResponseEntity<CidadeModel> cidadeUpdate(@PathVariable(value = "id_cidade") Long cidadeId, @RequestBody CidadeModel cidade) {
+		Optional<CidadeModel> buscaCidade = cidadeRepository.findById(cidadeId);
+		
+		if (buscaCidade.isPresent()) {
+			return ResponseEntity.ok(cidadeRepository.save(cidade));
+		} else {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		}	
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
+	public ResponseEntity<CidadeModel> cidadeDelete(@PathVariable(value = "id_cidade") Long cidadeId) {
+		Optional<CidadeModel> cidade = cidadeRepository.findById(cidadeId);
+		if (cidade.isPresent()) {
+			cidadeRepository.deleteById(cidadeId);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} 
+		return ResponseEntity.notFound().build();
+	}
 }
