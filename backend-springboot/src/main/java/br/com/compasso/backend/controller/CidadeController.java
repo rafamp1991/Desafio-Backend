@@ -47,40 +47,43 @@ public class CidadeController {
 	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
 	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
 		EstadoModel estado = estadoRepository.findByUf(uf);
+		
 		if (estado != null) {
-			List<CidadeModel> listaCidade = new ArrayList<>(); 
-			listaCidade.addAll(estado.getCidades());
-			return ResponseEntity.ok(listaCidade);
+			List<CidadeModel> filtraCidade = new ArrayList<>();
+			List<CidadeModel> cidades = cidadeRepository.findAll();
+			
+			for (CidadeModel cidade : cidades) {
+				if (cidade.getEstadoModel().getUf().equals(estado.getUf())) {
+					filtraCidade.add(cidade);
+				}
+			}
+			
+			return ResponseEntity.ok(filtraCidade);
 		}
 		
 		return ResponseEntity.notFound().build();
 	}
 	
-//	@CrossOrigin
-//	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
-//	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
-//		EstadoModel estado = estadoRepository.findByUf(uf);
-//		if (estado != null) {
-//			List<CidadeModel> listaCidade = new ArrayList<>(); 
-//			listaCidade.addAll(estado.getCidades());
-//			return ResponseEntity.ok(listaCidade);
-//		}
-//		
-//		return ResponseEntity.notFound().build();
-//	}
-	
-//	@CrossOrigin
-//	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
-//	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
-//		EstadoModel estado = estadoRepository.findByNome(nome);
-//		if (estado != null) {
-//			List<CidadeModel> listaCidade = new ArrayList<>(); 
-//			listaCidade.addAll(estado.getCidades());
-//			return ResponseEntity.ok(listaCidade);
-//		}
-//		
-//		return ResponseEntity.notFound().build();
-//	}
+	@CrossOrigin
+	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
+	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
+		EstadoModel estado = estadoRepository.findByNome(nome);
+		
+		if (estado != null) {
+			List<CidadeModel> filtraCidade = new ArrayList<>();
+			List<CidadeModel> cidades = cidadeRepository.findAll();
+			
+			for (CidadeModel cidade : cidades) {
+				if (cidade.getEstadoModel().getNome().equals(estado.getNome())) {
+					filtraCidade.add(cidade);
+				}
+			}
+			
+			return ResponseEntity.ok(filtraCidade);
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)

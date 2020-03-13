@@ -1,13 +1,7 @@
 package br.com.compasso.backend.controller;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
-import javax.swing.text.html.Option;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,28 +60,17 @@ public class EstadoController {
 		}
 	}
 	
-//	@CrossOrigin
-//	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.PUT)
-//	public ResponseEntity<EstadoModel> estadoUpdate(@PathVariable(value = "id_estado") Long estadoId, @RequestBody EstadoModel estado) {
-//		/*Optional<EstadoModel> buscaEstado = estadoRepository.findById(estadoId);
-//		buscaEstado.se
-//		if (buscaEstado.isPresent()) {	
-//			return ResponseEntity.ok(estadoRepository.save(estado));
-//		} else {
-//			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-//		}*/
-//		
-//	//	estado.setCidades(new Optional<CidadeModel>());
-//		
-//		EstadoModel buscaEstado = estadoRepository.findById(estadoId).get();
-//		Set<CidadeModel> h = new HashSet<CidadeModel>();
-//		estado.setCidades(h);
-//		if (buscaEstado != null) {	
-//			return ResponseEntity.ok(estadoRepository.save(estado));
-//		} else {
-//			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-//		}
-//	}
+	@CrossOrigin
+	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.PUT)
+	public ResponseEntity<EstadoModel> estadoUpdate(@PathVariable(value = "id_estado") Long estadoId, @RequestBody EstadoModel estado) {
+		Optional<EstadoModel> buscaEstado = estadoRepository.findById(estadoId);
+		
+		if (buscaEstado.isPresent()) {
+			return ResponseEntity.ok(estadoRepository.save(estado));
+		} else {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		}	
+	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.DELETE)
