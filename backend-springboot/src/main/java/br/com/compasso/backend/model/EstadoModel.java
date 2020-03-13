@@ -1,6 +1,8 @@
 package br.com.compasso.backend.model;
 
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "estados")
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EstadoModel {
 	
 	@Id
@@ -26,14 +28,14 @@ public class EstadoModel {
 	
 	@Column(name = "nome")
 	private String nome;
+	
 	@Column(name = "uf")
 	private String uf;
 	
-	@JsonIgnore(true)
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_estado")
-	@JsonManagedReference
-	private Set<CidadeModel> cidades;
+//	@OneToMany(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id_estado")
+//	@JsonManagedReference
+//	private Set<CidadeModel> cidades;
 
 	public Long getEstadoId() {
 		return estadoId;
@@ -59,11 +61,11 @@ public class EstadoModel {
 		this.uf = uf;
 	}
 
-	public Set<CidadeModel> getCidades() {
-		return cidades;
-	}
-
-	public void setCidades(Set<CidadeModel> cidades) {
-		this.cidades = cidades;
-	}
+//	public Set<CidadeModel> getCidades() {
+//		return cidades;
+//	}
+//
+//	public void setCidades(Set<CidadeModel> cidades) {
+//		this.cidades = cidades;
+//	}
 }

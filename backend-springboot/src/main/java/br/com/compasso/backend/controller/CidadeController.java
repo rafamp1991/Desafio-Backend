@@ -56,18 +56,31 @@ public class CidadeController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@CrossOrigin
-	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
-		EstadoModel estado = estadoRepository.findByNome(nome);
-		if (estado != null) {
-			List<CidadeModel> listaCidade = new ArrayList<>(); 
-			listaCidade.addAll(estado.getCidades());
-			return ResponseEntity.ok(listaCidade);
-		}
-		
-		return ResponseEntity.notFound().build();
-	}
+//	@CrossOrigin
+//	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
+//	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
+//		EstadoModel estado = estadoRepository.findByUf(uf);
+//		if (estado != null) {
+//			List<CidadeModel> listaCidade = new ArrayList<>(); 
+//			listaCidade.addAll(estado.getCidades());
+//			return ResponseEntity.ok(listaCidade);
+//		}
+//		
+//		return ResponseEntity.notFound().build();
+//	}
+	
+//	@CrossOrigin
+//	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
+//	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
+//		EstadoModel estado = estadoRepository.findByNome(nome);
+//		if (estado != null) {
+//			List<CidadeModel> listaCidade = new ArrayList<>(); 
+//			listaCidade.addAll(estado.getCidades());
+//			return ResponseEntity.ok(listaCidade);
+//		}
+//		
+//		return ResponseEntity.notFound().build();
+//	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
@@ -80,6 +93,12 @@ public class CidadeController {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param cidadeId
+	 * @param cidade
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
 	public ResponseEntity<CidadeModel> cidadeUpdate(@PathVariable(value = "id_cidade") Long cidadeId, @RequestBody CidadeModel cidade) {
