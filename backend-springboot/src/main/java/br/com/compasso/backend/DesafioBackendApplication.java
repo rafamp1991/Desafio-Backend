@@ -8,12 +8,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@SpringBootApplication
-@EntityScan(basePackages = "br.com.compasso.backend.model")
-@ComponentScan(basePackages = {"br.*"})
-@EnableJpaRepositories(basePackages = {"br.com.compasso.backend.repository"})
-@EnableTransactionManagement
+
+//@EntityScan(basePackages = "br.com.compasso.backend.model")
+//@ComponentScan(basePackages = {"br.*"})
+//@EnableJpaRepositories(basePackages = {"br.com.compasso.backend.repository"})
+//@EnableTransactionManagement
 @EnableWebMvc
+@SpringBootApplication
 public class DesafioBackendApplication {
 
 	public static void main(String[] args) {

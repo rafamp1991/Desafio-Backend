@@ -13,9 +13,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.compasso.backend.model.CidadeModel;
 import br.com.compasso.backend.repository.CidadeRepository;
+import br.com.compasso.backend.repository.EstadoRepository;
 
 @WebMvcTest(CidadeController.class)
 @ActiveProfiles("test")
@@ -27,8 +27,8 @@ public class CidadeControllerTest {
 	@MockBean
     private CidadeRepository cidadeRepository;
 	
-	@Autowired
-	ObjectMapper mapper;
+	@MockBean
+    private EstadoRepository estadoRepository;
 	
 	private CidadeModel cidadeModel;
 	private CidadeModel cidadeModel2;
