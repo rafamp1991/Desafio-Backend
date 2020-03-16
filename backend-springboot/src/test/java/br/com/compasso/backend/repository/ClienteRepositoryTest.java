@@ -1,46 +1,54 @@
 package br.com.compasso.backend.repository;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
-
-import org.assertj.core.api.Assertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import org.junit.Before;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import br.com.compasso.backend.model.ClienteModel;
 
-@RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = Replace.NONE)
+@SpringBootTest
 public class ClienteRepositoryTest {
  
     @Autowired
     private ClienteRepository clienteRepository;
     
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    private ClienteModel clienteModel;
     
-//    @Test
-//    public void findById() {
-//    	ClienteModel cliente = clienteRepository.findById(3);
-//    	Assertions.assertThat(cliente.getClienteId()).isEqualTo(3);
-//    }
-    
-//    @Test
-//    public void findByNome() {
-//    	Optional<ClienteModel> cliente = clienteRepository.findByNome("Rafa");
-//    	Assertions.assertThat(cliente.getNome()).isEqualTo("Rafa");
-//    }
-    
-    @Test
-    public void findByNomeAndSobrenome() {
-    	ClienteModel cliente = clienteRepository.findByNomeAndSobrenome("Rafa", "Martins de Padua");
-    	Assertions.assertThat(cliente.getNome()).isEqualTo("Rafa");
-    	Assertions.assertThat(cliente.getSobrenome()).isEqualTo("Martins de Padua");
+    @Before
+    public void setUP() {
+    	
+    	LocalDate localDate = LocalDate.of( 2011 , 4 , 21 );
+    	
+    	clienteModel = new ClienteModel();
+    	clienteModel.setClienteId(23L);
+    	clienteModel.setNome("Vanessa");
+    	clienteModel.setSobrenome("Ramos");
+    	clienteModel.setSexo("feminino");
+    	clienteModel.setDataNascimento(localDate);
+    	clienteModel.setIdade(9);
     }
+    
+    @DisplayName("Teste para consultar o cliente pelo Id")
+    @Test
+    public void findById() {
+    	Optional<ClienteModel> cliente = clienteRepository.findById(23L);
+    	
+    	assertTrue(cliente.isPresent());
+    	ClienteModel clienteModel = cliente.get();
+    	assertEquals(clienteModel.getNome(), "Vanessa");
+    }
+    
+    @DisplayName("Teste para comparar o tamanho da lista de clientes")
+	@Test
+    public void findByNome() throws Exception {
+		List<ClienteModel> clientes = clienteRepository.findByNome("Vanessa");
+		assertEquals(clientes.size(),3);
+    }
+    
 }

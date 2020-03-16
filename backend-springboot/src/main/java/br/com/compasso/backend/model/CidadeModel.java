@@ -20,7 +20,7 @@ public class CidadeModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cidade")
-	private long cidadeId;
+	private Long cidadeId;
 	
 	private String nome;
 	private Double latitude;
@@ -32,11 +32,11 @@ public class CidadeModel {
 	@JsonBackReference
 	private EstadoModel estadoModel;
 
-	public long getCidadeId() {
+	public Long getCidadeId() {
 		return cidadeId;
 	}
 
-	public void setCidadeId(long cidadeId) {
+	public void setCidadeId(Long cidadeId) {
 		this.cidadeId = cidadeId;
 	}
 

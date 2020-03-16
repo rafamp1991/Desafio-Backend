@@ -1,43 +1,53 @@
 package br.com.compasso.backend.repository;
 
-import org.assertj.core.api.Assertions;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import java.util.Optional;
+import org.junit.Before;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import br.com.compasso.backend.model.EstadoModel;
 
-@RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = Replace.NONE)
+@SpringBootTest
 public class EstadoRepositoryTest {
 	
 	@Autowired
     private EstadoRepository estadoRepository;
-    
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-    
-//    @Test
-//    public void findById() {
-//    	EstadoModel estado = estadoRepository.findById(13);
-//    	Assertions.assertThat(estado.getEstadoId()).isEqualTo(13);
-//    }
-    
-    @Test
-    public void findByNome() {
-    	EstadoModel estado = estadoRepository.findByNome("Rio de Janeiro");
-    	Assertions.assertThat(estado.getNome()).isEqualTo("Rio de Janeiro");
+
+	private EstadoModel estadoModel;
+	
+	@Before
+    public void setUP() {
+ 
+		estadoModel = new EstadoModel();
+		estadoModel.setEstadoId(51L);
+		estadoModel.setNome("Mato Grosso");
+		estadoModel.setUf("MT");
     }
     
+	@DisplayName("Teste para consultar o estado pelo Id")
     @Test
-    public void findByUf() {
-    	EstadoModel estado = estadoRepository.findByUf("SC");
-    	Assertions.assertThat(estado.getUf()).isEqualTo("SC");
+    public void findById(){
+		Optional<EstadoModel> estado = estadoRepository.findById(51L);
+		
+		assertTrue(estado.isPresent());
+		EstadoModel estadoModel = estado.get();
+		assertEquals(estadoModel.getNome(), "Mato Grosso");
     }
+	
+	@DisplayName("Teste para consultar o estado pelo nome")
+	@Test
+	public void findByNome(){
+		EstadoModel estado = estadoRepository.findByNome("Mato Grosso");
+		assertEquals(estado.getEstadoId(), Long.valueOf(51));
+	}
+	
+	@DisplayName("Teste para consultar o estado pelo uf")
+	@Test
+	public void findByuf(){
+		EstadoModel estado = estadoRepository.findByUf("MT");
+		assertEquals(estado.getEstadoId(), Long.valueOf(51));
+	}
 }
