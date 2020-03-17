@@ -66,48 +66,39 @@ public class CidadeControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
-//	@Test
-//	public void getByNome() throws Exception {
-//		List<CidadeModel> listaCidades = new ArrayList<CidadeModel>();
-//		listaCidades.add(cidadeModel);
-//		
-//	    Mockito.doReturn(listaCidades)
-//		.when(cidadeRepository)
-//		.findByNome("Zacarias");
-//	    mockMvc.perform(MockMvcRequestBuilders.get("/cidade/nome"))
-//	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
-//	}
+	@Test
+	public void getByNome() throws Exception {
+		List<CidadeModel> listaCidades = new ArrayList<CidadeModel>();
+		listaCidades.add(cidadeModel);
+		
+	    Mockito.doReturn(listaCidades)
+		.when(cidadeRepository)
+		.findByNome("Zacarias");
+	    mockMvc.perform(MockMvcRequestBuilders.get("/cidade/Zacarias"))
+	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
+	}
 	
-//	@Test
-//	public void getCidadesByEstadoUf() throws Exception {
-//		EstadoModel estado = estadoRepository.findByUf("SP");
-//		
-//		List<CidadeModel> filtraCidade = new ArrayList<>();
-//		List<CidadeModel> cidades = cidadeRepository.findAll();
-//		
-//		for (CidadeModel cidade : cidades) {
-//			if (cidade.getEstadoModel().getUf().equals(estado.getUf())) {
-//				filtraCidade.add(cidade);
-//			}
-//		}
-//		
-//	    Mockito.doReturn(estado)
-//		.when(estadoRepository)
-//		.findByUf("SP");
-//	    mockMvc.perform(MockMvcRequestBuilders.get("/cidade/estadoUf/uf"))
-//	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
-//	}
+	@Test
+	public void getCidadesByEstadoUf() throws Exception {
+		EstadoModel estado = new EstadoModel();
+		
+	    Mockito.doReturn(estado)
+		.when(estadoRepository)
+		.findByUf("RJ");
+	    mockMvc.perform(MockMvcRequestBuilders.get("/cidade/estadoUf/RJ"))
+	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
+	}
 	
-//	@Test
-//	public void getCidadesByEstadoNome() throws Exception {
-//		EstadoModel estado = new EstadoModel();
-//		
-//	    Mockito.doReturn(estado)
-//		.when(estadoRepository)
-//		.findByNome("Rio de Janeiro");
-//	    mockMvc.perform(MockMvcRequestBuilders.get("/cidade/estadoNome/nome"))
-//	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
-//	}
+	@Test
+	public void getCidadesByEstadoNome() throws Exception {
+		EstadoModel estado = new EstadoModel();
+		
+	    Mockito.doReturn(estado)
+		.when(estadoRepository)
+		.findByNome("Rio de Janeiro");
+	    mockMvc.perform(MockMvcRequestBuilders.get("/cidade/estadoNome/Rio de Janeiro"))
+	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
+	}
 	
 //	@Test
 //    public void cidadeCreate() throws Exception {
@@ -115,7 +106,5 @@ public class CidadeControllerTest {
 //        Mockito.doReturn(Optional.of(cidadeModel)).when(cidadeRepository).findById(3557154L);
 //        mockMvc.perform(MockMvcRequestBuilders.post("/cidade"))
 //        .andExpect(MockMvcResultMatchers.status().is(HttpStatus.CREATED.value()));
-//    }
-	
-	
+//    }	
 }
