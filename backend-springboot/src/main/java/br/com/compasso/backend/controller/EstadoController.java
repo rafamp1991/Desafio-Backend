@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.compasso.backend.model.CidadeModel;
 import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.EstadoRepository;
 
@@ -27,8 +26,9 @@ public class EstadoController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/estados", method = RequestMethod.GET)
-    public ResponseEntity<List<EstadoModel>> getEstadosModels() {
+    public ResponseEntity getEstadosModels() {
 		
 		try {
         	List<EstadoModel> listaEstados = estadoRepository.findAll();
@@ -36,11 +36,15 @@ public class EstadoController {
 			if (!listaEstados.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.OK).body(listaEstados);
 			} else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
             }
 			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
     }
 	
@@ -51,8 +55,9 @@ public class EstadoController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/estadoNome/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<EstadoModel> GetByEstado(@PathVariable(value = "nome") String nome) {
+	public ResponseEntity GetByEstado(@PathVariable(value = "nome") String nome) {
 		
 		try {
 			EstadoModel estado = estadoRepository.findByNome(nome);
@@ -60,10 +65,14 @@ public class EstadoController {
 			if (estado != null) {
 				return ResponseEntity.status(HttpStatus.OK).body(estado);
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -74,8 +83,9 @@ public class EstadoController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/estadoUf/{uf}", method = RequestMethod.GET)
-	public ResponseEntity<EstadoModel> GetByUf(@PathVariable(value = "uf") String uf) {
+	public ResponseEntity GetByUf(@PathVariable(value = "uf") String uf) {
 					
 		try {
 			EstadoModel estado = estadoRepository.findByUf(uf);
@@ -83,10 +93,14 @@ public class EstadoController {
 			if (estado != null) {
 				return ResponseEntity.status(HttpStatus.OK).body(estado);
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -97,19 +111,25 @@ public class EstadoController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/estado", method = RequestMethod.POST)
-	public ResponseEntity<EstadoModel> estadoCreate(@RequestBody EstadoModel estado) {
+	public ResponseEntity estadoCreate(@RequestBody EstadoModel estado) {
 		
 		try {
 			EstadoModel buscaEstado = estadoRepository.findByNome(estado.getNome());
 			
 			if (buscaEstado == null) {
-				return ResponseEntity.status(HttpStatus.OK).body(estadoRepository.save(estado));
+				return ResponseEntity.status(HttpStatus.CREATED).body(estadoRepository.save(estado));
 			} else {
-				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("status: 409."
+						+ "\nerror: Conflict."
+						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito com o estado "
+						+ "atual do recurso de destino.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -121,8 +141,9 @@ public class EstadoController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.PUT)
-	public ResponseEntity<EstadoModel> estadoUpdate(@PathVariable(value = "id_estado") Long estadoId, @RequestBody EstadoModel estado) {
+	public ResponseEntity estadoUpdate(@PathVariable(value = "id_estado") Long estadoId, @RequestBody EstadoModel estado) {
 		
 		try {
 			Optional<EstadoModel> buscaEstado = estadoRepository.findById(estadoId);
@@ -130,10 +151,14 @@ public class EstadoController {
 			if (buscaEstado.isPresent()) {
 				return ResponseEntity.status(HttpStatus.OK).body(estadoRepository.save(estado));
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}	
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -144,20 +169,26 @@ public class EstadoController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.DELETE)
-	public ResponseEntity<CidadeModel> cidadeDelete(@PathVariable(value = "id_estado") Long estadoId) {
+	public ResponseEntity estadoDelete(@PathVariable(value = "id_estado") Long estadoId) {
 		
 		try {
-			Optional<EstadoModel> cidade = estadoRepository.findById(estadoId);
+			Optional<EstadoModel> estado = estadoRepository.findById(estadoId);
 			
-			if (cidade.isPresent()) {
+			if (estado.isPresent()) {
 				estadoRepository.deleteById(estadoId);
-				return ResponseEntity.status(HttpStatus.OK).build();
+				return ResponseEntity.status(HttpStatus.OK).body("status: 200."
+						+ "\nmessage: Recurso removido com sucesso.");
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 }

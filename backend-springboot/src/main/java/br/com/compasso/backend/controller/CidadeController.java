@@ -32,8 +32,9 @@ public class CidadeController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cidades", method = RequestMethod.GET)
-    public ResponseEntity<List<CidadeModel>> getCidadesModels() {
+    public ResponseEntity getCidadesModels() {
 		
         try {
         	List<CidadeModel> listaCidades = cidadeRepository.findAll();
@@ -41,11 +42,15 @@ public class CidadeController {
 			if (!listaCidades.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.OK).body(listaCidades);
 			} else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            }
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
+            }	
 			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
     }
 	
@@ -56,8 +61,9 @@ public class CidadeController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cidade/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<List<CidadeModel>> getByNome(@PathVariable(value = "nome") String nome) {
+	public ResponseEntity getByNome(@PathVariable(value = "nome") String nome) {
 		
 		try {
 			List<CidadeModel> listaCidade = cidadeRepository.findByNome(nome);
@@ -65,11 +71,15 @@ public class CidadeController {
 			if (!listaCidade.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.OK).body(listaCidade);
 			} else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
             }
 			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -80,8 +90,9 @@ public class CidadeController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
-	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
+	public ResponseEntity getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
 		
 		try {
 			EstadoModel estado = estadoRepository.findByUf(uf);
@@ -98,10 +109,15 @@ public class CidadeController {
 				
 				return ResponseEntity.status(HttpStatus.OK).body(filtraCidade);
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
+			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}	
 	}
 	
@@ -112,8 +128,9 @@ public class CidadeController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
+	public ResponseEntity getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
 		
 		try {
 			EstadoModel estado = estadoRepository.findByNome(nome);
@@ -130,10 +147,15 @@ public class CidadeController {
 				
 				return ResponseEntity.status(HttpStatus.OK).body(filtraCidade);
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
+			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -144,18 +166,25 @@ public class CidadeController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
-	public ResponseEntity<CidadeModel> cidadeCreate(@RequestBody CidadeModel cidade) {
+	public ResponseEntity cidadeCreate(@RequestBody CidadeModel cidade) {
 		
 		try {
 			Optional<CidadeModel> buscaCidade = cidadeRepository.findCidadeByNome(cidade.getNome());
 			if (!buscaCidade.isPresent()) {
-				return ResponseEntity.status(HttpStatus.OK).body(cidadeRepository.save(cidade));
+				return ResponseEntity.status(HttpStatus.CREATED).body(cidadeRepository.save(cidade));
 			} else {
-				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("status: 409."
+						+ "\nerror: Conflict."
+						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito com o estado "
+						+ "atual do recurso de destino.");
 			}
+			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}	
 	}
 	
@@ -167,8 +196,9 @@ public class CidadeController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
-	public ResponseEntity<CidadeModel> cidadeUpdate(@PathVariable(value = "id_cidade") Long cidadeId, @RequestBody CidadeModel cidade) {
+	public ResponseEntity cidadeUpdate(@PathVariable(value = "id_cidade") Long cidadeId, @RequestBody CidadeModel cidade) {
 		
 		try {
 			Optional<CidadeModel> buscaCidade = cidadeRepository.findById(cidadeId);
@@ -176,10 +206,15 @@ public class CidadeController {
 			if (buscaCidade.isPresent()) {
 				return ResponseEntity.status(HttpStatus.OK).body(cidadeRepository.save(cidade));
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}	
+			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -190,19 +225,26 @@ public class CidadeController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
-	public ResponseEntity<CidadeModel> cidadeDelete(@PathVariable(value = "id_cidade") Long cidadeId) {
+	public ResponseEntity cidadeDelete(@PathVariable(value = "id_cidade") Long cidadeId) {
 		
 		try {
 			Optional<CidadeModel> cidade = cidadeRepository.findById(cidadeId);
 			if (cidade.isPresent()) {
 				cidadeRepository.deleteById(cidadeId);
-				return ResponseEntity.status(HttpStatus.OK).build();
+				return ResponseEntity.status(HttpStatus.OK).body("status: 200."
+						+ "\nmessage: Recurso removido com sucesso.");
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
+			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 }

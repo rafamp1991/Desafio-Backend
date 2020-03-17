@@ -30,19 +30,24 @@ public class ClienteController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
-    public ResponseEntity<List<ClienteModel>> getClientesModels() {
+    public ResponseEntity getClientesModels() {
 		try {
 			List<ClienteModel> listaClientes = clienteRepository.findAll();
 			
 			if (!listaClientes.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.OK).body(listaClientes);
 			} else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
             }
 			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
     }
 	
@@ -53,8 +58,9 @@ public class ClienteController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/clienteNome/{nome}", method = RequestMethod.GET)
-	public ResponseEntity<List<ClienteModel>> GetByNome(@PathVariable(value = "nome") String nome) {
+	public ResponseEntity GetByNome(@PathVariable(value = "nome") String nome) {
 		
 		try {
 			List<ClienteModel> listaClientes = clienteRepository.findByNome(nome);
@@ -62,10 +68,14 @@ public class ClienteController {
 			if (!listaClientes.isEmpty()) {
 				return ResponseEntity.status(HttpStatus.OK).body(listaClientes);
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -76,8 +86,9 @@ public class ClienteController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/clienteId/{clienteId}", method = RequestMethod.GET)
-	public ResponseEntity<ClienteModel> GetById(@PathVariable(value = "clienteId") Long clienteId) {
+	public ResponseEntity GetById(@PathVariable(value = "clienteId") Long clienteId) {
 		
 		try {
 			Optional<ClienteModel> cliente = clienteRepository.findById(clienteId);
@@ -85,10 +96,14 @@ public class ClienteController {
 			if (cliente != null) {
 				return ResponseEntity.status(HttpStatus.OK).body(cliente.get());
 			} else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+						+ "\nerror: Bad Request."
+						+ "\nmessage: Solicitação inválida.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+					+ "\nerror: Not Found."
+					+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 		}
 	}
 	
@@ -99,19 +114,25 @@ public class ClienteController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cliente", method = RequestMethod.POST)
-	public ResponseEntity<ClienteModel> clienteCreate(@RequestBody ClienteModel cliente) {
+	public ResponseEntity clienteCreate(@RequestBody ClienteModel cliente) {
 		
 		try {
 			ClienteModel buscaCliente = clienteRepository.findByNomeAndSobrenome(cliente.getNome(), cliente.getSobrenome());
 			
 			if (buscaCliente == null) {
-				return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.save(cliente));
+				return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(cliente));
 			} else {
-				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("status: 409."
+						+ "\nerror: Conflict."
+						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito com o estado "
+						+ "atual do recurso de destino.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -123,14 +144,17 @@ public class ClienteController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.PUT)
-	public ResponseEntity<ClienteModel> clienteUpdate(@PathVariable(value = "id_cliente") Long clienteId, @RequestBody ClienteModel cliente) {
+	public ResponseEntity clienteUpdate(@PathVariable(value = "id_cliente") Long clienteId, @RequestBody ClienteModel cliente) {
 		
 		try {
 			cliente.setCidadeModel(cidadeRepository.findById(cliente.getCidadeModel().getCidadeId()).get());
 			return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.save(cliente));	
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 	
@@ -141,20 +165,26 @@ public class ClienteController {
 	 * @return
 	 */
 	@CrossOrigin
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.DELETE)
-	public ResponseEntity<ClienteModel> clienteDelete(@PathVariable(value = "id_cliente") Long clienteId) {
+	public ResponseEntity clienteDelete(@PathVariable(value = "id_cliente") Long clienteId) {
 		
 		try {
 			Optional<ClienteModel> cliente = clienteRepository.findById(clienteId);
 			
 			if (cliente.isPresent()) {
 				clienteRepository.deleteById(clienteId);
-				return ResponseEntity.status(HttpStatus.OK).build();
+				return ResponseEntity.status(HttpStatus.OK).body("status: 200."
+						+ "\nmessage: Recurso removido com sucesso.");
 			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
+					+ "\nerror: Bad Request."
+					+ "\nmessage: Solicitação inválida.");
 		}
 	}
 }
