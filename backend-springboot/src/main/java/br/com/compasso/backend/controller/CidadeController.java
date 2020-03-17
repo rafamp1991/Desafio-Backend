@@ -26,74 +26,127 @@ public class CidadeController {
 	@Autowired
 	private EstadoRepository estadoRepository;
 	
+	/**
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cidades", method = RequestMethod.GET)
-    public List<CidadeModel> getCidadesModels() {
-        return cidadeRepository.findAll();
+    public ResponseEntity<List<CidadeModel>> getCidadesModels() {
+		
+        try {
+        	List<CidadeModel> listaCidades = cidadeRepository.findAll();
+			
+			if (!listaCidades.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.OK).body(listaCidades);
+			} else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
     }
 	
+	/**
+	 * @param nome
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<List<CidadeModel>> getByNome(@PathVariable(value = "nome") String nome) {
-		List<CidadeModel> listaCidade = cidadeRepository.findByNome(nome);
-		if (listaCidade != null) {
-			return ResponseEntity.ok(listaCidade);
-		} 
 		
-		return ResponseEntity.notFound().build();
+		try {
+			List<CidadeModel> listaCidade = cidadeRepository.findByNome(nome);
+			
+			if (!listaCidade.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.OK).body(listaCidade);
+			} else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
+	/**
+	 * @param uf
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
 	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
-		EstadoModel estado = estadoRepository.findByUf(uf);
 		
-		if (estado != null) {
-			List<CidadeModel> filtraCidade = new ArrayList<>();
-			List<CidadeModel> cidades = cidadeRepository.findAll();
+		try {
+			EstadoModel estado = estadoRepository.findByUf(uf);
 			
-			for (CidadeModel cidade : cidades) {
-				if (cidade.getEstadoModel().getUf().equals(estado.getUf())) {
-					filtraCidade.add(cidade);
+			if (estado != null) {
+				List<CidadeModel> filtraCidade = new ArrayList<>();
+				List<CidadeModel> cidades = cidadeRepository.findAll();
+				
+				for (CidadeModel cidade : cidades) {
+					if (cidade.getEstadoModel().getUf().equals(estado.getUf())) {
+						filtraCidade.add(cidade);
+					}
 				}
+				
+				return ResponseEntity.status(HttpStatus.OK).body(filtraCidade);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 			}
-			
-			return ResponseEntity.ok(filtraCidade);
-		}
-		
-		return ResponseEntity.notFound().build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}	
 	}
 	
+	/**
+	 * @param nome
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<List<CidadeModel>> getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
-		EstadoModel estado = estadoRepository.findByNome(nome);
 		
-		if (estado != null) {
-			List<CidadeModel> filtraCidade = new ArrayList<>();
-			List<CidadeModel> cidades = cidadeRepository.findAll();
+		try {
+			EstadoModel estado = estadoRepository.findByNome(nome);
 			
-			for (CidadeModel cidade : cidades) {
-				if (cidade.getEstadoModel().getNome().equals(estado.getNome())) {
-					filtraCidade.add(cidade);
+			if (estado != null) {
+				List<CidadeModel> filtraCidade = new ArrayList<>();
+				List<CidadeModel> cidades = cidadeRepository.findAll();
+				
+				for (CidadeModel cidade : cidades) {
+					if (cidade.getEstadoModel().getNome().equals(estado.getNome())) {
+						filtraCidade.add(cidade);
+					}
 				}
+				
+				return ResponseEntity.status(HttpStatus.OK).body(filtraCidade);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 			}
-			
-			return ResponseEntity.ok(filtraCidade);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
-		
-		return ResponseEntity.notFound().build();
 	}
 	
+	/**
+	 * @param cidade
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
 	public ResponseEntity<CidadeModel> cidadeCreate(@RequestBody CidadeModel cidade) {
-		Optional<CidadeModel> buscaCidade = cidadeRepository.findCidadeByNome(cidade.getNome());
-		if (buscaCidade.isPresent()) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-		} else {
-			return ResponseEntity.ok(cidadeRepository.save(cidade));
-		}
+		
+		try {
+			Optional<CidadeModel> buscaCidade = cidadeRepository.findCidadeByNome(cidade.getNome());
+			if (!buscaCidade.isPresent()) {
+				return ResponseEntity.status(HttpStatus.OK).body(cidadeRepository.save(cidade));
+			} else {
+				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}	
 	}
 	
 	/**
@@ -105,23 +158,38 @@ public class CidadeController {
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
 	public ResponseEntity<CidadeModel> cidadeUpdate(@PathVariable(value = "id_cidade") Long cidadeId, @RequestBody CidadeModel cidade) {
-		Optional<CidadeModel> buscaCidade = cidadeRepository.findById(cidadeId);
 		
-		if (buscaCidade.isPresent()) {
-			return ResponseEntity.ok(cidadeRepository.save(cidade));
-		} else {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-		}	
+		try {
+			Optional<CidadeModel> buscaCidade = cidadeRepository.findById(cidadeId);
+			
+			if (buscaCidade.isPresent()) {
+				return ResponseEntity.status(HttpStatus.OK).body(cidadeRepository.save(cidade));
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
+	/**
+	 * @param cidadeId
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
 	public ResponseEntity<CidadeModel> cidadeDelete(@PathVariable(value = "id_cidade") Long cidadeId) {
-		Optional<CidadeModel> cidade = cidadeRepository.findById(cidadeId);
-		if (cidade.isPresent()) {
-			cidadeRepository.deleteById(cidadeId);
-			return ResponseEntity.status(HttpStatus.OK).build();
-		} 
-		return ResponseEntity.notFound().build();
+		
+		try {
+			Optional<CidadeModel> cidade = cidadeRepository.findById(cidadeId);
+			if (cidade.isPresent()) {
+				cidadeRepository.deleteById(cidadeId);
+				return ResponseEntity.status(HttpStatus.OK).build();
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 }

@@ -62,6 +62,12 @@
 			<scope>runtime</scope>
 		</dependency>
 		
+		<!-- Conversão de classes de data e hora do Java 8 em representação JSON -->
+		<dependency>
+		   <groupId>com.fasterxml.jackson.datatype</groupId>
+		   <artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

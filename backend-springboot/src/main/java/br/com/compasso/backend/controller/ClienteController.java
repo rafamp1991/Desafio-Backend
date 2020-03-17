@@ -24,61 +24,125 @@ public class ClienteController {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	
+	/**
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
-    public List<ClienteModel> getClientesModels() {
-        return clienteRepository.findAll();
+    public ResponseEntity<List<ClienteModel>> getClientesModels() {
+		try {
+			List<ClienteModel> listaClientes = clienteRepository.findAll();
+			
+			if (!listaClientes.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.OK).body(listaClientes);
+			} else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
     }
 	
+	/**
+	 * @param nome
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/clienteNome/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<List<ClienteModel>> GetByNome(@PathVariable(value = "nome") String nome) {
-		List<ClienteModel> listaCliente = clienteRepository.findByNome(nome);
-		if (listaCliente != null) {
-			return ResponseEntity.ok(listaCliente);
-		} 
 		
-		return ResponseEntity.notFound().build();
+		try {
+			List<ClienteModel> listaClientes = clienteRepository.findByNome(nome);
+			
+			if (!listaClientes.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.OK).body(listaClientes);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
+	/**
+	 * @param clienteId
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/clienteId/{clienteId}", method = RequestMethod.GET)
 	public ResponseEntity<ClienteModel> GetById(@PathVariable(value = "clienteId") Long clienteId) {
-		Optional<ClienteModel> cliente = clienteRepository.findById(clienteId);
-		if (cliente != null) {
-			return ResponseEntity.ok(cliente.get());
-		}
 		
-		return ResponseEntity.notFound().build();
+		try {
+			Optional<ClienteModel> cliente = clienteRepository.findById(clienteId);
+			
+			if (cliente != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(cliente.get());
+			} else {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
 	}
 	
+	/**
+	 * @param cliente
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cliente", method = RequestMethod.POST)
 	public ResponseEntity<ClienteModel> clienteCreate(@RequestBody ClienteModel cliente) {
-		ClienteModel buscaCliente = clienteRepository.findByNomeAndSobrenome(cliente.getNome(), cliente.getSobrenome());
-		if (buscaCliente == null) {
-			return ResponseEntity.ok(clienteRepository.save(cliente));
-		} else {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		
+		try {
+			ClienteModel buscaCliente = clienteRepository.findByNomeAndSobrenome(cliente.getNome(), cliente.getSobrenome());
+			
+			if (buscaCliente == null) {
+				return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.save(cliente));
+			} else {
+				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
 	
+	/**
+	 * @param clienteId
+	 * @param cliente
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.PUT)
-	public ClienteModel clienteUpdate(@PathVariable(value = "id_cliente") Long clienteId, @RequestBody ClienteModel cliente) {
-		cliente.setCidadeModel(cidadeRepository.findById(cliente.getCidadeModel().getCidadeId()).get());
-		return clienteRepository.save(cliente);
+	public ResponseEntity<ClienteModel> clienteUpdate(@PathVariable(value = "id_cliente") Long clienteId, @RequestBody ClienteModel cliente) {
+		
+		try {
+			cliente.setCidadeModel(cidadeRepository.findById(cliente.getCidadeModel().getCidadeId()).get());
+			return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.save(cliente));	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
+	/**
+	 * @param clienteId
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.DELETE)
 	public ResponseEntity<ClienteModel> clienteDelete(@PathVariable(value = "id_cliente") Long clienteId) {
-		Optional<ClienteModel> cliente = clienteRepository.findById(clienteId);
-		if (cliente.isPresent()) {
-			clienteRepository.deleteById(clienteId);
-			return ResponseEntity.status(HttpStatus.OK).build();
-		}
 		
-		return ResponseEntity.notFound().build();
+		try {
+			Optional<ClienteModel> cliente = clienteRepository.findById(clienteId);
+			
+			if (cliente.isPresent()) {
+				clienteRepository.deleteById(clienteId);
+				return ResponseEntity.status(HttpStatus.OK).build();
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 }

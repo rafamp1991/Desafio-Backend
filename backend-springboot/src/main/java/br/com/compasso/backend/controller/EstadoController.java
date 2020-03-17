@@ -21,65 +21,131 @@ public class EstadoController {
 	@Autowired
 	private EstadoRepository estadoRepository;
 	
+	/**
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/estados", method = RequestMethod.GET)
-    public List<EstadoModel> getEstadosModels() {
-        return estadoRepository.findAll();
+    public ResponseEntity<List<EstadoModel>> getEstadosModels() {
+		
+		try {
+        	List<EstadoModel> listaEstados = estadoRepository.findAll();
+			
+			if (!listaEstados.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.OK).body(listaEstados);
+			} else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
     }
 	
+	/**
+	 * @param nome
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/estadoNome/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<EstadoModel> GetByEstado(@PathVariable(value = "nome") String nome) {
-		EstadoModel estado = estadoRepository.findByNome(nome);
-		if (estado != null) {
-			return ResponseEntity.ok(estado);
-		}
 		
-		return ResponseEntity.notFound().build();
+		try {
+			EstadoModel estado = estadoRepository.findByNome(nome);
+			
+			if (estado != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(estado);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
+	/**
+	 * @param uf
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/estadoUf/{uf}", method = RequestMethod.GET)
 	public ResponseEntity<EstadoModel> GetByUf(@PathVariable(value = "uf") String uf) {
-		EstadoModel estado = estadoRepository.findByUf(uf);
-		if (estado != null) {
-			return ResponseEntity.ok(estado);
+					
+		try {
+			EstadoModel estado = estadoRepository.findByUf(uf);
+			
+			if (estado != null) {
+				return ResponseEntity.status(HttpStatus.OK).body(estado);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
-		
-		return ResponseEntity.notFound().build();
 	}
 	
+	/**
+	 * @param estado
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/estado", method = RequestMethod.POST)
 	public ResponseEntity<EstadoModel> estadoCreate(@RequestBody EstadoModel estado) {
-		EstadoModel buscaEstado = estadoRepository.findByNome(estado.getNome());
-		if (buscaEstado != null) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-		} else {
-			return ResponseEntity.ok(estadoRepository.save(estado));
+		
+		try {
+			EstadoModel buscaEstado = estadoRepository.findByNome(estado.getNome());
+			
+			if (buscaEstado == null) {
+				return ResponseEntity.status(HttpStatus.OK).body(estadoRepository.save(estado));
+			} else {
+				return ResponseEntity.status(HttpStatus.CONFLICT).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
 	
+	/**
+	 * @param estadoId
+	 * @param estado
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.PUT)
 	public ResponseEntity<EstadoModel> estadoUpdate(@PathVariable(value = "id_estado") Long estadoId, @RequestBody EstadoModel estado) {
-		Optional<EstadoModel> buscaEstado = estadoRepository.findById(estadoId);
 		
-		if (buscaEstado.isPresent()) {
-			return ResponseEntity.ok(estadoRepository.save(estado));
-		} else {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-		}	
+		try {
+			Optional<EstadoModel> buscaEstado = estadoRepository.findById(estadoId);
+			
+			if (buscaEstado.isPresent()) {
+				return ResponseEntity.status(HttpStatus.OK).body(estadoRepository.save(estado));
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
+	/**
+	 * @param estadoId
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.DELETE)
 	public ResponseEntity<CidadeModel> cidadeDelete(@PathVariable(value = "id_estado") Long estadoId) {
-		Optional<EstadoModel> cidade = estadoRepository.findById(estadoId);
-		if (cidade.isPresent()) {
-			estadoRepository.deleteById(estadoId);
-			return ResponseEntity.status(HttpStatus.OK).build();
-		} 
-		return ResponseEntity.notFound().build();
+		
+		try {
+			Optional<EstadoModel> cidade = estadoRepository.findById(estadoId);
+			
+			if (cidade.isPresent()) {
+				estadoRepository.deleteById(estadoId);
+				return ResponseEntity.status(HttpStatus.OK).build();
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 }
