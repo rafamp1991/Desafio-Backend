@@ -27,6 +27,8 @@ public class CidadeController {
 	private EstadoRepository estadoRepository;
 	
 	/**
+	 * Endpoint para listar todas as cidades
+	 * @author Rafael Martins de Padua
 	 * @return
 	 */
 	@CrossOrigin
@@ -48,6 +50,8 @@ public class CidadeController {
     }
 	
 	/**
+	 * Endpoint para listar as cidades pelo nome
+	 * @author Rafael Martins de Padua
 	 * @param nome
 	 * @return
 	 */
@@ -70,6 +74,8 @@ public class CidadeController {
 	}
 	
 	/**
+	 * Endpoint para listar as cidades pelo UF do estado
+	 * @author Rafael Martins de Padua
 	 * @param uf
 	 * @return
 	 */
@@ -100,6 +106,8 @@ public class CidadeController {
 	}
 	
 	/**
+	 * Endpoint para listar as cidades pelo nome do estado
+	 * @author Rafael Martins de Padua
 	 * @param nome
 	 * @return
 	 */
@@ -130,6 +138,8 @@ public class CidadeController {
 	}
 	
 	/**
+	 * Endpoint para cadastrar uma nova cidade
+	 * @author Rafael Martins de Padua
 	 * @param cidade
 	 * @return
 	 */
@@ -150,7 +160,8 @@ public class CidadeController {
 	}
 	
 	/**
-	 * 
+	 * Endpoint para atualizar uma cidade
+	 * @author Rafael Martins de Padua
 	 * @param cidadeId
 	 * @param cidade
 	 * @return
@@ -173,6 +184,8 @@ public class CidadeController {
 	}
 	
 	/**
+	 * Endpoint para remover uma cidade
+	 * @author Rafael Martins de Padua
 	 * @param cidadeId
 	 * @return
 	 */

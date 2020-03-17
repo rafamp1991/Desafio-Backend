@@ -22,6 +22,8 @@ public class EstadoController {
 	private EstadoRepository estadoRepository;
 	
 	/**
+	 * Endpoint para listar todos os estados
+	 * @author Rafael Martins de Padua
 	 * @return
 	 */
 	@CrossOrigin
@@ -43,6 +45,8 @@ public class EstadoController {
     }
 	
 	/**
+	 * Endpoint para listar todos os estados pelo nome
+	 * @author Rafael Martins de Padua
 	 * @param nome
 	 * @return
 	 */
@@ -64,6 +68,8 @@ public class EstadoController {
 	}
 	
 	/**
+	 * Endpoint para listar todos os estados pelo UF
+	 * @author Rafael Martins de Padua
 	 * @param uf
 	 * @return
 	 */
@@ -85,6 +91,8 @@ public class EstadoController {
 	}
 	
 	/**
+	 * Endpoint para cadastrar um novo estado
+	 * @author Rafael Martins de Padua
 	 * @param estado
 	 * @return
 	 */
@@ -106,6 +114,8 @@ public class EstadoController {
 	}
 	
 	/**
+	 * Endpoint para atualizar um estado
+	 * @author Rafael Martins de Padua
 	 * @param estadoId
 	 * @param estado
 	 * @return
@@ -128,6 +138,8 @@ public class EstadoController {
 	}
 	
 	/**
+	 * Endpoint para remover um estado
+	 * @author Rafael Martins de Padua
 	 * @param estadoId
 	 * @return
 	 */

@@ -25,6 +25,8 @@ public class ClienteController {
 	private CidadeRepository cidadeRepository;
 	
 	/**
+	 * Endpoint para listar todos os clientes
+	 * @author Rafael Martins de Padua
 	 * @return
 	 */
 	@CrossOrigin
@@ -45,6 +47,8 @@ public class ClienteController {
     }
 	
 	/**
+	 * Endpoint para listar todos os clientes pelo nome
+	 * @author Rafael Martins de Padua
 	 * @param nome
 	 * @return
 	 */
@@ -66,6 +70,8 @@ public class ClienteController {
 	}
 	
 	/**
+	 * Endpoint para consultar um cliente pelo ID
+	 * @author Rafael Martins de Padua
 	 * @param clienteId
 	 * @return
 	 */
@@ -87,6 +93,8 @@ public class ClienteController {
 	}
 	
 	/**
+	 * Endpoint para cadastrar um novo cliente
+	 * @author Rafael Martins de Padua
 	 * @param cliente
 	 * @return
 	 */
@@ -108,6 +116,8 @@ public class ClienteController {
 	}
 	
 	/**
+	 * Endpoint para atualizar um cliente
+	 * @author Rafael Martins de Padua
 	 * @param clienteId
 	 * @param cliente
 	 * @return
@@ -125,6 +135,8 @@ public class ClienteController {
 	}
 	
 	/**
+	 * Endpoint para remover um cliente
+	 * @author Rafael Martins de Padua
 	 * @param clienteId
 	 * @return
 	 */
