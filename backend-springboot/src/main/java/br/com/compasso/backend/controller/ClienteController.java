@@ -15,6 +15,11 @@ import br.com.compasso.backend.model.ClienteModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.ClienteRepository;
 
+/**
+ * @author Rafael Martins de Padua
+ * @Controller
+ * @ResponseBody
+ */
 @RestController
 public class ClienteController {
 

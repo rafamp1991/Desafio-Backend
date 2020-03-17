@@ -13,25 +13,53 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Modelo para criação do Cliente
+ * @author Rafael Martins de Padua
+ */
 @Entity
 @Table(name = "clientes")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ClienteModel {
 	
+	/**
+	 * ID
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
 	private Long clienteId;
 	
+	/**
+	 * Nome
+	 */
 	private String nome;
+	
+	/**
+	 * Sobrenome
+	 */
 	private String sobrenome;
+	
+	/**
+	 * Sexo
+	 */
 	private String sexo;
 	
+	/**
+	 * Data de nascimento
+	 */
 	@JsonFormat(pattern="dd-MM-yyyy")
 	@Column(name = "datanascimento")
 	private LocalDate dataNascimento;
+	
+	/**
+	 * Idade
+	 */
 	private int idade;
 	
+	/**
+	 * ID da cidade
+	 */
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cidade")
 	private CidadeModel cidadeModel;

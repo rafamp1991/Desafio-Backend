@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.EstadoRepository;
 
+/**
+ * @author Rafael Martins de Padua
+ * @Controller
+ * @ResponseBody
+ */
 @RestController
 public class EstadoController {
 

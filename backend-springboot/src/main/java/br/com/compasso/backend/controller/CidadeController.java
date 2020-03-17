@@ -17,6 +17,11 @@ import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.EstadoRepository;
 
+/**
+ * @author Rafael Martins de Padua
+ * @Controller
+ * @ResponseBody
+ */
 @RestController
 public class CidadeController {
 

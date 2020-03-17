@@ -8,19 +8,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Modelo para criação do Estado
+ * @author Rafael Martins de Padua
+ */
 @Entity
 @Table(name = "estados")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EstadoModel {
 	
+	/**
+	 * ID
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_estado")
 	private Long estadoId;
 	
+	/**
+	 * Nome
+	 */
 	@Column(name = "nome")
 	private String nome;
 	
+	/**
+	 * UF
+	 */
 	@Column(name = "uf")
 	private String uf;
 

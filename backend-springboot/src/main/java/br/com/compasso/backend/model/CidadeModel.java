@@ -12,21 +12,46 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Modelo para criação da Cidade
+ * @author Rafael Martins de Padua
+ */
 @Entity
 @Table(name = "cidades")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CidadeModel {
 
+	/**
+	 * ID
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cidade")
 	private Long cidadeId;
 	
+	/**
+	 * Nome
+	 */
 	private String nome;
+	
+	/**
+	 * Latitude
+	 */
 	private Double latitude;
+	
+	/**
+	 * Longitude
+	 */
 	private Double longitude;
+	
+	/**
+	 * Capital
+	 */
 	private Boolean capital;
 	
+	/**
+	 * ID do estado
+	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado")
 	@JsonBackReference
