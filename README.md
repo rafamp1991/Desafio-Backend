@@ -26,6 +26,22 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 
 Execute o comando mvn spring-boot:run para executar a aplicação.
 
+## Rotas
+
+### CIDADE
+
+* Listar todas as cidades: http://localhost:8080/cidades
+	
+* Consultar cidade pelo nome: http://localhost:8080/cidade/Lages
+
+* Listar cidades pelo nome do Estado: http://localhost:8080/cidade/estadoNome/Santa Catarina
+
+* Cadastrar cidade: http://localhost:8080/cidade	
+	
+* Atualizar cidade: http://localhost:8080/cidade/ + id
+	
+* Deletar cidade: http://localhost:8080/cidade + id
+
 ## Licença
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
