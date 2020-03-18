@@ -22,10 +22,6 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 * IDEs Eclipse
 * banco de dados relacional (Postgresql)
 
-## Como executar a aplicação
-
-Execute o comando mvn spring-boot:run para executar a aplicação.
-
 ## Como testar a aplicação
 
 Para simular as requisições HTTP é recomendável utilizar o aplicativo Postman. Segue o link para download
