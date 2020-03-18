@@ -24,6 +24,8 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 
 ## Como testar a aplicação
 
+* No Repositório do github, dentro do diretório database_backup se encontra o arquivo database.backup, contendo o backup do banco de dados com as tabelas populadas.
+
 Para simular as requisições HTTP é recomendável utilizar o aplicativo Postman. Segue o link para download
 [Postman](https://www.postman.com/downloads/).
 
