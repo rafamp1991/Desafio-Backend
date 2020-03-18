@@ -26,6 +26,11 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 
 Execute o comando mvn spring-boot:run para executar a aplicação.
 
+## Como testar a aplicação
+
+Para simular as requisições HTTP é recomendável utilizar o aplicativo Postman. segue o link para download
+[Postman](https://www.postman.com/downloads/).
+
 ## Rotas
 
 ### CIDADE
@@ -41,6 +46,34 @@ Execute o comando mvn spring-boot:run para executar a aplicação.
 * Atualizar cidade: http://localhost:8080/cidade/ + id
 	
 * Deletar cidade: http://localhost:8080/cidade + id
+
+### ESTADO
+
+* Listar todos os estados: http://localhost:8080/estados
+	
+* Consultar estado pelo nome: http://localhost:8080/estadoNome/Acre
+	
+* Consultar estado pelo UF: http://localhost:8080/estadoUf/RJ
+
+* Cadastrar estado: http://localhost:8080/estado
+	
+* Atualizar estado: http://localhost:8080/estado/ + id
+	
+* Deletar estado: http://localhost:8080/estado/ + id
+
+### CLIENTE
+
+* Listar todos os clientes: http://localhost:8080/clientes
+	
+* Consultar cliente pelo nome: http://localhost:8080/clienteNome/	+ nome
+
+* Consultar cliente pelo id: http://localhost:8080/clienteId/ + id
+	
+* Cadastrar cliente: http://localhost:8080/cliente
+	
+* Atualizar cliente: http://localhost:8080/cliente/ + id
+	
+* Deletar cliente: http://localhost:8080/cliente/ + id
 
 ## Licença
 
