@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.mockito.ArgumentMatchers.any;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
 
 import br.com.compasso.backend.model.ClienteModel;
 import br.com.compasso.backend.repository.CidadeRepository;
