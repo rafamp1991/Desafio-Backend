@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.compasso.backend.model.ClienteModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.ClienteRepository;
@@ -154,8 +155,16 @@ public class ClienteController {
 	public ResponseEntity clienteUpdate(@PathVariable(value = "id_cliente") Long clienteId, @RequestBody ClienteModel cliente) {
 		
 		try {
-			cliente.setCidadeModel(cidadeRepository.findById(cliente.getCidadeModel().getCidadeId()).get());
-			return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.save(cliente));	
+			Optional<ClienteModel> buscaCliente = clienteRepository.findById(clienteId);
+			
+			if (buscaCliente.isPresent()) {
+				return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.save(cliente));
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("status: 404."
+						+ "\nerror: Not Found."
+						+ "\nmessage: Não foi possível encontrar o recurso especificado.");
+			}	
+			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
 					+ "\nerror: Bad Request."
