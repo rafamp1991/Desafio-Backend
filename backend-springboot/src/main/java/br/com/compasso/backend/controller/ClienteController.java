@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compasso.backend.model.ClienteModel;
-import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.ClienteRepository;
 
 /**
@@ -26,9 +25,6 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
-	@Autowired
-	private CidadeRepository cidadeRepository;
 	
 	/**
 	 * Endpoint para listar todos os clientes

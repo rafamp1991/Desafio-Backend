@@ -3,7 +3,6 @@ package br.com.compasso.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,6 +25,10 @@ import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.EstadoRepository;
 
+/**
+ * @author Rafael Martins de Padua
+ * @Controller
+ */
 @WebMvcTest(CidadeController.class)
 @ActiveProfiles("test")
 public class CidadeControllerTest {
@@ -43,24 +46,13 @@ public class CidadeControllerTest {
     private EstadoRepository estadoRepository;
 	
 	private CidadeModel cidadeModel;
-	private EstadoModel estadoModel;
 	
-	@Before
-    public void setUP() {
-        
-        cidadeModel = new CidadeModel();
-        cidadeModel.setCidadeId(3557154L);
-        cidadeModel.setNome("Zacarias");
-        cidadeModel.setLatitude(-21.0506);
-        cidadeModel.setLongitude(-50.0552);
-        cidadeModel.setCapital(false);
-        
-        estadoModel = new EstadoModel();
-        estadoModel.setEstadoId(35L);
-        estadoModel.setNome("São Paulo");
-        estadoModel.setUf("SP"); 
-    }
-	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por consultar todas as cidades.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
 	public void getCidadesModels() throws Exception {
 		List<CidadeModel> listaCidades = new ArrayList<CidadeModel>();
@@ -73,6 +65,12 @@ public class CidadeControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por consultar cidades pelo nome.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
 	public void getByNome() throws Exception {
 		List<CidadeModel> listaCidades = new ArrayList<CidadeModel>();
@@ -85,6 +83,12 @@ public class CidadeControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por consultar cidades pelo UF do estado.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
 	public void getCidadesByEstadoUf() throws Exception {
 		EstadoModel estado = new EstadoModel();
@@ -96,6 +100,12 @@ public class CidadeControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por consultar cidades pelo nome do estado.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
 	public void getCidadesByEstadoNome() throws Exception {
 		EstadoModel estado = new EstadoModel();
@@ -107,6 +117,12 @@ public class CidadeControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por cadastrar uma nova cidade.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
     public void cidadeCreate() throws Exception {
 		
@@ -123,6 +139,12 @@ public class CidadeControllerTest {
 	    		.andExpect(MockMvcResultMatchers.status().is(HttpStatus.CREATED.value()));
     }
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por atualizar uma cidade.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
     public void cidadeUpdate() throws Exception {
 		
@@ -147,6 +169,12 @@ public class CidadeControllerTest {
 	            .andExpect(jsonPath("$.capital", is(false)));
     }
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por remover uma cidade.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
     public void cidadeDelete() throws Exception {
 		

@@ -3,7 +3,6 @@ package br.com.compasso.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -25,6 +24,10 @@ import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.EstadoRepository;
 
+/**
+ * @author Rafael Martins de Padua
+ * @Controller
+ */
 @WebMvcTest(EstadoController.class)
 @ActiveProfiles("test")
 public class EstadoControllerTest {
@@ -43,15 +46,12 @@ public class EstadoControllerTest {
 	
 	private EstadoModel estadoModel;
 	
-	@Before
-    public void setUP() {
-		
-        estadoModel = new EstadoModel();
-        estadoModel.setEstadoId(12L);
-        estadoModel.setNome("Acre");
-        estadoModel.setUf("AC"); 
-    }
-	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por consultar todos os estados.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
 	public void getEstadosModels() throws Exception {
 		List<EstadoModel> listaEstados = new ArrayList<EstadoModel>();
@@ -64,6 +64,12 @@ public class EstadoControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por consultar um estado pelo nome.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
 	public void GetByEstado() throws Exception {
 		EstadoModel estado = new EstadoModel();
@@ -75,6 +81,12 @@ public class EstadoControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por consultar um estado pelo UF.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
 	public void GetByUf() throws Exception {
 		EstadoModel estado = new EstadoModel();
@@ -86,6 +98,12 @@ public class EstadoControllerTest {
 	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
 	}
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por cadastrar um novo estado.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
     public void estadoCreate() throws Exception {
 		
@@ -100,8 +118,14 @@ public class EstadoControllerTest {
 	    		.andExpect(MockMvcResultMatchers.status().is(HttpStatus.CREATED.value()));
     }
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por atualizar um estado.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
-    public void cidadeUpdate() throws Exception {
+    public void estadoUpdate() throws Exception {
 		
 		EstadoModel atualizaEstado = new EstadoModel();
 		atualizaEstado.setEstadoId(12L);
@@ -120,8 +144,14 @@ public class EstadoControllerTest {
 	            .andExpect(jsonPath("$.uf", is("ET")));
     }
 	
+	/**
+	 * Método para testar a Endpoint, 
+	 * responsável por remover um estado.
+	 * @author Rafael Martins de Padua
+	 * @throws Exception
+	 */
 	@Test
-    public void cidadeDelete() throws Exception {
+    public void estadoDelete() throws Exception {
 		
 		EstadoModel atualizaEstado = new EstadoModel();
 		atualizaEstado.setEstadoId(12L);

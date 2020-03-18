@@ -5,33 +5,24 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Optional;
-import org.junit.Before;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import br.com.compasso.backend.model.CidadeModel;
 
+/**
+ * @author Rafael Martins de Padua
+ * @Repository
+ */
 @SpringBootTest
 public class CidadeRepositoryTest {
  
 	@Autowired
     private CidadeRepository cidadeRepository;
-	
-	private CidadeModel cidadeModel;
-	
-	@Before
-    public void setUP() {
- 
-        cidadeModel = new CidadeModel();
-        cidadeModel.setCidadeId(2114007L);
-        cidadeModel.setNome("Zé Doca");
-        cidadeModel.setLatitude(-3.27014);
-        cidadeModel.setLongitude(-45.6553);
-        cidadeModel.setCapital(false);
-    }
 
-	@DisplayName("Teste para consultar a cidade pelo Id")
+	/**
+	 * Teste para consultar a cidade pelo Id
+	 */
 	@Test
 	public void findById(){
 		Optional<CidadeModel> cidade = cidadeRepository.findById(2114007L);
@@ -41,7 +32,9 @@ public class CidadeRepositoryTest {
 		assertEquals(cidadeModel.getNome(), "Zé Doca");
 	}
 	
-	@DisplayName("Teste para consultar a cidade pelo nome")
+	/**
+	 * Teste para consultar a cidade pelo nome
+	 */
 	@Test
 	public void findCidadeByNome(){
 		Optional<CidadeModel> cidade = cidadeRepository.findCidadeByNome("Zé Doca");
@@ -51,7 +44,11 @@ public class CidadeRepositoryTest {
 		assertEquals(cidadeModel.getCidadeId(), Long.valueOf(2114007));
 	}
 	
-	@DisplayName("Teste para consultar uma cidade inexistente pelo id")
+	
+	/**
+	 * Teste para consultar uma cidade inexistente pelo id
+	 * @throws Exception
+	 */
 	@Test
     public void cidadeIdInexistente() throws Exception {
         Optional<CidadeModel> cidade = cidadeRepository.findById(9999L);
@@ -59,7 +56,10 @@ public class CidadeRepositoryTest {
         assertFalse(cidade.isPresent());
     }
 	
-	@DisplayName("Teste para comparar o tamanho da lista de cidades")
+	/**
+	 * Teste para comparar o tamanho da lista de cidades
+	 * @throws Exception
+	 */
 	@Test
     public void findByNome() throws Exception {
 		List<CidadeModel> cidades = cidadeRepository.findByNome("Zé Doca");
