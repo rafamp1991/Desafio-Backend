@@ -28,7 +28,7 @@ Execute o comando mvn spring-boot:run para executar a aplicação.
 
 ## Como testar a aplicação
 
-Para simular as requisições HTTP é recomendável utilizar o aplicativo Postman. segue o link para download
+Para simular as requisições HTTP é recomendável utilizar o aplicativo Postman. Segue o link para download
 [Postman](https://www.postman.com/downloads/).
 
 ## Rotas
