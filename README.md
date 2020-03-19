@@ -24,7 +24,7 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 
 ## Como testar a aplicação
 
-* No Repositório do github, dentro do diretório database_backup se encontra o arquivo database.backup, contendo o backup do banco de dados com as tabelas populadas.
+* No Repositório do github, dentro do diretório database_backup se encontra o arquivo [database.backup](https://github.com/rafamp1991/DesafioBackend/tree/master/database_backup), contendo o backup do banco de dados com as tabelas populadas.
 
 * Para rodar a aplicação abra um prompt de comando e insira o caminho do diretório em que está o projeto, em seguida execute o seguinte comando:
 	* mvn spring-boot:run
@@ -33,7 +33,7 @@ Para simular as requisições HTTP é recomendável utilizar o aplicativo Postma
 [Postman](https://www.postman.com/downloads/).
 
 	* Após o Postman for inicializado, no topo da aplicação a um botão "import", para carregar coleções.
-	* No projeto consta um diretório nomeado "postman_backup", onde há um arquivo para importar a coleção de testes [postman_backup].
+	* No projeto consta um diretório nomeado "postman_backup", onde há um arquivo para importar a coleção de testes [postman_backup](https://github.com/rafamp1991/DesafioBackend/tree/master/postman_backup).
 
 ## Como acessar a documentação com o swagger
 
