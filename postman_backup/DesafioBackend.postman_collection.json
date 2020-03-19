@@ -1,0 +1,685 @@
+{
+	"info": {
+		"_postman_id": "50efdf1e-d1b9-4f88-b853-1d821c652e2b",
+		"name": "DesafioBackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cidade",
+			"item": [
+				{
+					"name": "http://localhost:8080/cidade/23",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidade/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidade",
+								"23"
+							]
+						},
+						"description": "remove uma cidade"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cidade/23",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"cidadeId\":\"23\",\r\n    \"nome\": \"CidadeTeste\",\r\n    \"latitude\": -1.72183,\r\n    \"longitude\": -48.8788,\r\n    \"capital\": false,\r\n    \"estadoModel\": {\r\n    \t\"estadoId\":\"11\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidade/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidade",
+								"23"
+							]
+						},
+						"description": "atualiza uma cidade"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cidade/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"CidadeTeste100\",\r\n    \"latitude\": -1.72183,\r\n    \"longitude\": -48.8788,\r\n    \"capital\": false,\r\n    \"estadoModel\": {\r\n    \t\"estadoId\":\"11\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidade/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidade",
+								""
+							]
+						},
+						"description": "cadastra uma nova cidade"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cidade/Blumenau",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidade/Blumenau",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidade",
+								"Blumenau"
+							]
+						},
+						"description": "lista a cidade pelo nome"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cidades",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						},
+						"description": "lista todas as cidades"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cidade/estadoUf/SC",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidade/estadoUf/SC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidade",
+								"estadoUf",
+								"SC"
+							]
+						},
+						"description": "lista todas as cidades pelo uf informado"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cidade/estadoNome/Rio de Janeiro",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidade/estadoUf/SC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidade",
+								"estadoUf",
+								"SC"
+							]
+						},
+						"description": "lista todas as cidades pelo nome do estado"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Estado",
+			"item": [
+				{
+					"name": "http://localhost:8080/estado/3",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"estadoId\":\"3\",\r\n\t\"nome\": \"Estado Novo3\",\r\n\t\"uf\": \"EN\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/estado/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estado",
+								"3"
+							]
+						},
+						"description": "atualiza um estado"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/estado/3",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/estado/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estado",
+								"3"
+							]
+						},
+						"description": "remove um estado"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/estado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"Estado Novo3\",\r\n\t\"uf\": \"EN\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/estado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estado"
+							]
+						},
+						"description": "cadastra um novo estado"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/estados",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/estados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados"
+							]
+						},
+						"description": "lista todos os estados"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/estadoNome/Acre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/estadoNome/Acre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estadoNome",
+								"Acre"
+							]
+						},
+						"description": "lista o estado pelo nome"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/estadoUf/PA",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/estadoUf/PA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estadoUf",
+								"PA"
+							]
+						},
+						"description": "lista o estado pelo uf"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "http://localhost:8080/clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes"
+							]
+						},
+						"description": "lista todos os clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/clienteId/8",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clienteId/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clienteId",
+								"8"
+							]
+						},
+						"description": "lista o cliente pelo ID"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/clienteNome/Vanessa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clienteNome/Vanessa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clienteNome",
+								"Vanessa"
+							]
+						},
+						"description": "lista os clientes pelo nome informado"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Vanessa\",\r\n    \"sobrenome\": \"da Mata\",\r\n    \"sexo\": \"feminino\",\r\n    \"dataNascimento\": \"10-02-1976\",\r\n    \"idade\": 44,\r\n    \"cidadeModel\": {\r\n    \t\"cidadeId\":\"1500107\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente"
+							]
+						},
+						"description": "cadastra um novo cliente"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cliente/26",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clienteId\":\"26\",\r\n    \"nome\": \"Vanessa\",\r\n    \"sobrenome\": \"da Mata\",\r\n    \"sexo\": \"feminino\",\r\n    \"dataNascimento\": \"10-02-1976\",\r\n    \"idade\": 44,\r\n    \"cidadeModel\": {\r\n    \t\"cidadeId\":\"1500107\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cliente/26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"26"
+							]
+						},
+						"description": "atualiza um cliente"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/cliente/26",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/cliente/26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"26"
+							]
+						},
+						"description": "remove um cliente"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

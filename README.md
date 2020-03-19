@@ -32,6 +32,9 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 Para simular as requisições HTTP é recomendável utilizar o aplicativo Postman. Segue o link para download
 [Postman](https://www.postman.com/downloads/).
 
+	* Após o Postman for inicializado, no topo da aplicação a um botão "import", para carregar coleções.
+	* No projeto consta um diretório nomeado "postman_backup", onde há um arquivo para importar a coleção de testes [postman_backup].
+
 ## Como acessar a documentação com o swagger
 
 * Com a aplicação inicializada, na sequência acesse a seguinte URL em seu navegador:
