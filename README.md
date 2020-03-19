@@ -32,6 +32,11 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 Para simular as requisições HTTP é recomendável utilizar o aplicativo Postman. Segue o link para download
 [Postman](https://www.postman.com/downloads/).
 
+## Como acessar a documentação com o swagger
+
+* Com a aplicação inicializada, na sequência acesse a seguinte URL em seu navegador:
+	* http://localhost:8080/swagger-ui.html
+
 ## Rotas
 
 ### CIDADE
