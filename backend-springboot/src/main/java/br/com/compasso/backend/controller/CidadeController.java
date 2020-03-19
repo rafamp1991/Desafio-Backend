@@ -16,6 +16,7 @@ import br.com.compasso.backend.model.CidadeModel;
 import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.EstadoRepository;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Rafael Martins de Padua
@@ -36,8 +37,10 @@ public class CidadeController {
 	 * @author Rafael Martins de Padua
 	 * @return
 	 */
+	
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Lista todas as cidades")
 	@RequestMapping(value = "/cidades", method = RequestMethod.GET)
     public ResponseEntity getCidadesModels() {
 		
@@ -67,6 +70,7 @@ public class CidadeController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Lista as cidades pelo nome")
 	@RequestMapping(value = "/cidade/{nome}", method = RequestMethod.GET)
 	public ResponseEntity getByNome(@PathVariable(value = "nome") String nome) {
 		
@@ -96,6 +100,7 @@ public class CidadeController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Lista as cidades pelo uf do estado")
 	@RequestMapping(value = "/cidade/estadoUf/{uf}", method = RequestMethod.GET)
 	public ResponseEntity getCidadesByEstadoUf(@PathVariable(value = "uf") String uf) {
 		
@@ -134,6 +139,7 @@ public class CidadeController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Lista as cidades pelo nome do estado")
 	@RequestMapping(value = "/cidade/estadoNome/{nome}", method = RequestMethod.GET)
 	public ResponseEntity getCidadesByEstadoNome(@PathVariable(value = "nome") String nome) {
 		
@@ -172,6 +178,7 @@ public class CidadeController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Cadastra uma nova cidade")
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
 	public ResponseEntity cidadeCreate(@RequestBody CidadeModel cidade) {
 		
@@ -182,7 +189,7 @@ public class CidadeController {
 			} else {
 				return ResponseEntity.status(HttpStatus.CONFLICT).body("status: 409."
 						+ "\nerror: Conflict."
-						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito com o estado "
+						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito. "
 						+ "atual do recurso de destino.");
 			}
 			
@@ -202,6 +209,7 @@ public class CidadeController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Atualiza uma cidade")
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.PUT)
 	public ResponseEntity cidadeUpdate(@PathVariable(value = "id_cidade") Long cidadeId, @RequestBody CidadeModel cidade) {
 		
@@ -231,6 +239,7 @@ public class CidadeController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Remove uma cidade")
 	@RequestMapping(value = "/cidade/{id_cidade}", method = RequestMethod.DELETE)
 	public ResponseEntity cidadeDelete(@PathVariable(value = "id_cidade") Long cidadeId) {
 		

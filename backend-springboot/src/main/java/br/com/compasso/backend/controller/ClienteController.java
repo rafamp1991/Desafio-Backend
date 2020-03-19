@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compasso.backend.model.ClienteModel;
 import br.com.compasso.backend.repository.ClienteRepository;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Rafael Martins de Padua
@@ -33,6 +34,7 @@ public class ClienteController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Lista todos os clientes")
 	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
     public ResponseEntity getClientesModels() {
 		try {
@@ -61,6 +63,7 @@ public class ClienteController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Lista os clientes pelo nome")
 	@RequestMapping(value = "/clienteNome/{nome}", method = RequestMethod.GET)
 	public ResponseEntity GetByNome(@PathVariable(value = "nome") String nome) {
 		
@@ -89,6 +92,7 @@ public class ClienteController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Consulta um cliente pelo ID")
 	@RequestMapping(value = "/clienteId/{clienteId}", method = RequestMethod.GET)
 	public ResponseEntity GetById(@PathVariable(value = "clienteId") Long clienteId) {
 		
@@ -117,6 +121,7 @@ public class ClienteController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Cadastra um novo cliente")
 	@RequestMapping(value = "/cliente", method = RequestMethod.POST)
 	public ResponseEntity clienteCreate(@RequestBody ClienteModel cliente) {
 		
@@ -147,6 +152,7 @@ public class ClienteController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Atualiza um cliente")
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.PUT)
 	public ResponseEntity clienteUpdate(@PathVariable(value = "id_cliente") Long clienteId, @RequestBody ClienteModel cliente) {
 		
@@ -176,6 +182,7 @@ public class ClienteController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Remove um cliente")
 	@RequestMapping(value = "/cliente/{id_cliente}", method = RequestMethod.DELETE)
 	public ResponseEntity clienteDelete(@PathVariable(value = "id_cliente") Long clienteId) {
 		

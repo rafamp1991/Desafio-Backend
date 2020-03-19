@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.compasso.backend.model.EstadoModel;
 import br.com.compasso.backend.repository.EstadoRepository;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Rafael Martins de Padua
@@ -32,6 +33,7 @@ public class EstadoController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Lista todos os estados")
 	@RequestMapping(value = "/estados", method = RequestMethod.GET)
     public ResponseEntity getEstadosModels() {
 		
@@ -61,6 +63,7 @@ public class EstadoController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Consulta um estado pelo nome")
 	@RequestMapping(value = "/estadoNome/{nome}", method = RequestMethod.GET)
 	public ResponseEntity GetByEstado(@PathVariable(value = "nome") String nome) {
 		
@@ -89,6 +92,7 @@ public class EstadoController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Consulta um estado pelo UF")
 	@RequestMapping(value = "/estadoUf/{uf}", method = RequestMethod.GET)
 	public ResponseEntity GetByUf(@PathVariable(value = "uf") String uf) {
 					
@@ -117,6 +121,7 @@ public class EstadoController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Cadastra um novo estado")
 	@RequestMapping(value = "/estado", method = RequestMethod.POST)
 	public ResponseEntity estadoCreate(@RequestBody EstadoModel estado) {
 		
@@ -147,6 +152,7 @@ public class EstadoController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Atualiza um estado")
 	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.PUT)
 	public ResponseEntity estadoUpdate(@PathVariable(value = "id_estado") Long estadoId, @RequestBody EstadoModel estado) {
 		
@@ -175,6 +181,7 @@ public class EstadoController {
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
+	@ApiOperation(value = "Remove um estado")
 	@RequestMapping(value = "/estado/{id_estado}", method = RequestMethod.DELETE)
 	public ResponseEntity estadoDelete(@PathVariable(value = "id_estado") Long estadoId) {
 		

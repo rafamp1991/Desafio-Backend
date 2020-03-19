@@ -19,7 +19,7 @@ public class SpringFoxConfig {
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
           .apis(RequestHandlerSelectors.basePackage("br.com.compasso.backend"))              
-          .paths(PathSelectors.any())                          
+          .paths(PathSelectors.any())                   
           .build()
           .apiInfo(metaData());
     }
@@ -29,6 +29,8 @@ public class SpringFoxConfig {
 	        .title("Desafio-Backend")
 	        .description("\"Spring Boot REST API para gerenciamento de clientes, cidades e estados!\"")
 	        .version("0.0.1-SNAPSHOT")
+	        .license("Apache License Version 2.0")
+            .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
 	        .build();
 	  }
 }
