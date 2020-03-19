@@ -33,7 +33,8 @@ Para simular as requisições HTTP é recomendável utilizar o aplicativo Postma
 [Postman](https://www.postman.com/downloads/).
 
 	* Após o Postman for inicializado, no topo da aplicação a um botão "import", para carregar coleções.
-	* No projeto consta um diretório nomeado "postman_backup", onde há um arquivo para importar a coleção de testes [postman_backup](https://github.com/rafamp1991/DesafioBackend/tree/master/postman_backup).
+
+* No projeto consta um diretório nomeado "postman_backup", onde há um arquivo para importar a coleção de testes [postman_backup](https://github.com/rafamp1991/DesafioBackend/tree/master/postman_backup).
 
 ## Como acessar a documentação com o swagger
 
