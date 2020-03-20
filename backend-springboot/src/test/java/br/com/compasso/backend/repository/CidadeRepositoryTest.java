@@ -13,7 +13,6 @@ import br.com.compasso.backend.model.CidadeModel;
 
 /**
  * @author Rafael Martins de Padua
- * @Repository
  */
 @SpringBootTest
 public class CidadeRepositoryTest {
@@ -48,10 +47,9 @@ public class CidadeRepositoryTest {
 	
 	/**
 	 * Teste para consultar uma cidade inexistente pelo id
-	 * @throws Exception
 	 */
 	@Test
-    public void cidadeIdInexistente() throws Exception {
+    public void cidadeIdInexistente() {
         Optional<CidadeModel> cidade = cidadeRepository.findById(9999L);
 
         assertFalse(cidade.isPresent());
@@ -59,10 +57,9 @@ public class CidadeRepositoryTest {
 	
 	/**
 	 * Teste para comparar o tamanho da lista de cidades
-	 * @throws Exception
 	 */
 	@Test
-    public void findByNome() throws Exception {
+    public void findByNome() {
 		List<CidadeModel> cidades = cidadeRepository.findByNome("Zé Doca");
 		assertEquals(cidades.size(),1);
     }

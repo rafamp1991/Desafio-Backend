@@ -17,8 +17,6 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Rafael Martins de Padua
- * @Controller
- * @ResponseBody
  */
 @RestController
 public class EstadoController {
@@ -29,7 +27,8 @@ public class EstadoController {
 	/**
 	 * Endpoint para listar todos os estados
 	 * @author Rafael Martins de Padua
-	 * @return
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -58,8 +57,9 @@ public class EstadoController {
 	/**
 	 * Endpoint para listar todos os estados pelo nome
 	 * @author Rafael Martins de Padua
-	 * @param nome
-	 * @return
+	 * @param nome parâmetro referente ao nome do estado
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -87,8 +87,9 @@ public class EstadoController {
 	/**
 	 * Endpoint para listar todos os estados pelo UF
 	 * @author Rafael Martins de Padua
-	 * @param uf
-	 * @return
+	 * @param uf Unidade da Federação
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -116,8 +117,9 @@ public class EstadoController {
 	/**
 	 * Endpoint para cadastrar um novo estado
 	 * @author Rafael Martins de Padua
-	 * @param estado
-	 * @return
+	 * @param estado objeto do tipo EstadoModel
+	 * @return Retorna o status CREATED, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -146,9 +148,10 @@ public class EstadoController {
 	/**
 	 * Endpoint para atualizar um estado
 	 * @author Rafael Martins de Padua
-	 * @param estadoId
-	 * @param estado
-	 * @return
+	 * @param estadoId parâmetro referente ao ID do estado
+	 * @param estado objeto do tipo EstadoModel
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -176,8 +179,9 @@ public class EstadoController {
 	/**
 	 * Endpoint para remover um estado
 	 * @author Rafael Martins de Padua
-	 * @param estadoId
-	 * @return
+	 * @param estadoId parâmetro referente ao ID do estado
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")

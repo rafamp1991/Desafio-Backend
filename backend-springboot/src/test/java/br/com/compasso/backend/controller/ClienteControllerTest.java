@@ -28,7 +28,6 @@ import br.com.compasso.backend.repository.ClienteRepository;
 
 /**
  * @author Rafael Martins de Padua
- * @Controller
  */
 @WebMvcTest(ClienteController.class)
 @ActiveProfiles("test")
@@ -52,7 +51,7 @@ public class ClienteControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar todos os clientes.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void getClientesModels() throws Exception {
@@ -70,7 +69,7 @@ public class ClienteControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar clientes pelo nome.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void getByNome() throws Exception {
@@ -88,7 +87,7 @@ public class ClienteControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar um cliente pelo ID.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void GetById() throws Exception {
@@ -112,7 +111,7 @@ public class ClienteControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por cadastrar um novo cliente.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void clienteCreate() throws Exception {
@@ -135,7 +134,7 @@ public class ClienteControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por atualizar um cliente.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void clienteUpdate() throws Exception {
@@ -171,7 +170,7 @@ public class ClienteControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por remover um cliente.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void clienteDelete() throws Exception {

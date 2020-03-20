@@ -27,7 +27,6 @@ import br.com.compasso.backend.repository.EstadoRepository;
 
 /**
  * @author Rafael Martins de Padua
- * @Controller
  */
 @WebMvcTest(CidadeController.class)
 @ActiveProfiles("test")
@@ -51,7 +50,7 @@ public class CidadeControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar todas as cidades.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void getCidadesModels() throws Exception {
@@ -69,7 +68,7 @@ public class CidadeControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar cidades pelo nome.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void getByNome() throws Exception {
@@ -87,7 +86,7 @@ public class CidadeControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar cidades pelo UF do estado.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void getCidadesByEstadoUf() throws Exception {
@@ -104,7 +103,7 @@ public class CidadeControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar cidades pelo nome do estado.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void getCidadesByEstadoNome() throws Exception {
@@ -121,7 +120,7 @@ public class CidadeControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por cadastrar uma nova cidade.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void cidadeCreate() throws Exception {
@@ -143,7 +142,7 @@ public class CidadeControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por atualizar uma cidade.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void cidadeUpdate() throws Exception {
@@ -173,7 +172,7 @@ public class CidadeControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por remover uma cidade.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void cidadeDelete() throws Exception {

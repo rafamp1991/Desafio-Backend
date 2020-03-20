@@ -11,7 +11,6 @@ import br.com.compasso.backend.model.EstadoModel;
 
 /**
  * @author Rafael Martins de Padua
- * @Repository
  */
 @SpringBootTest
 public class EstadoRepositoryTest {

@@ -26,7 +26,6 @@ import br.com.compasso.backend.repository.EstadoRepository;
 
 /**
  * @author Rafael Martins de Padua
- * @Controller
  */
 @WebMvcTest(EstadoController.class)
 @ActiveProfiles("test")
@@ -50,7 +49,7 @@ public class EstadoControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar todos os estados.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void getEstadosModels() throws Exception {
@@ -68,7 +67,7 @@ public class EstadoControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar um estado pelo nome.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void GetByEstado() throws Exception {
@@ -85,7 +84,7 @@ public class EstadoControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por consultar um estado pelo UF.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
 	public void GetByUf() throws Exception {
@@ -102,7 +101,7 @@ public class EstadoControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por cadastrar um novo estado.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void estadoCreate() throws Exception {
@@ -122,7 +121,7 @@ public class EstadoControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por atualizar um estado.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void estadoUpdate() throws Exception {
@@ -148,7 +147,7 @@ public class EstadoControllerTest {
 	 * Método para testar a Endpoint, 
 	 * responsável por remover um estado.
 	 * @author Rafael Martins de Padua
-	 * @throws Exception
+	 * @throws Exception lança uma exceção em caso de erro
 	 */
 	@Test
     public void estadoDelete() throws Exception {

@@ -18,8 +18,6 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Rafael Martins de Padua
- * @Controller
- * @ResponseBody
  */
 @RestController
 public class ClienteController {
@@ -30,7 +28,8 @@ public class ClienteController {
 	/**
 	 * Endpoint para listar todos os clientes
 	 * @author Rafael Martins de Padua
-	 * @return
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -58,8 +57,9 @@ public class ClienteController {
 	/**
 	 * Endpoint para listar todos os clientes pelo nome
 	 * @author Rafael Martins de Padua
-	 * @param nome
-	 * @return
+	 * @param nome parâmetro referente ao nome do cliente
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -87,8 +87,9 @@ public class ClienteController {
 	/**
 	 * Endpoint para consultar um cliente pelo ID
 	 * @author Rafael Martins de Padua
-	 * @param clienteId
-	 * @return
+	 * @param clienteId parâmetro referente ao ID do cliente
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -116,8 +117,9 @@ public class ClienteController {
 	/**
 	 * Endpoint para cadastrar um novo cliente
 	 * @author Rafael Martins de Padua
-	 * @param cliente
-	 * @return
+	 * @param cliente objeto do tipo ClienteModel
+	 * @return Retorna o status CREATED, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -146,9 +148,10 @@ public class ClienteController {
 	/**
 	 * Endpoint para atualizar um cliente
 	 * @author Rafael Martins de Padua
-	 * @param clienteId
-	 * @param cliente
-	 * @return
+	 * @param clienteId parâmetro referente ao ID do cliente
+	 * @param cliente objeto do tipo ClienteModel
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -177,8 +180,9 @@ public class ClienteController {
 	/**
 	 * Endpoint para remover um cliente
 	 * @author Rafael Martins de Padua
-	 * @param clienteId
-	 * @return
+	 * @param clienteId parâmetro referente ao ID do cliente
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")

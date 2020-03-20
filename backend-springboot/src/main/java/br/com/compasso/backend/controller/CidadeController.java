@@ -20,8 +20,6 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Rafael Martins de Padua
- * @Controller
- * @ResponseBody
  */
 @RestController
 public class CidadeController {
@@ -35,9 +33,9 @@ public class CidadeController {
 	/**
 	 * Endpoint para listar todas as cidades
 	 * @author Rafael Martins de Padua
-	 * @return
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
-	
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
 	@ApiOperation(value = "Lista todas as cidades")
@@ -65,8 +63,9 @@ public class CidadeController {
 	/**
 	 * Endpoint para listar as cidades pelo nome
 	 * @author Rafael Martins de Padua
-	 * @param nome
-	 * @return
+	 * @param nome parâmetro referente ao nome da cidade
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -95,8 +94,9 @@ public class CidadeController {
 	/**
 	 * Endpoint para listar as cidades pelo UF do estado
 	 * @author Rafael Martins de Padua
-	 * @param uf
-	 * @return
+	 * @param uf parâmetro referente ao uf do estado
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -134,8 +134,9 @@ public class CidadeController {
 	/**
 	 * Endpoint para listar as cidades pelo nome do estado
 	 * @author Rafael Martins de Padua
-	 * @param nome
-	 * @return
+	 * @param nome parâmetro referente ao nome da cidade
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -173,8 +174,9 @@ public class CidadeController {
 	/**
 	 * Endpoint para cadastrar uma nova cidade
 	 * @author Rafael Martins de Padua
-	 * @param cidade
-	 * @return
+	 * @param cidade objeto do tipo CidadeModel
+	 * @return Retorna o status CREATED, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -203,9 +205,10 @@ public class CidadeController {
 	/**
 	 * Endpoint para atualizar uma cidade
 	 * @author Rafael Martins de Padua
-	 * @param cidadeId
-	 * @param cidade
-	 * @return
+	 * @param cidadeId parâmetro referente ao ID da cidade
+	 * @param cidade objeto do tipo CidadeModel
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")
@@ -234,8 +237,9 @@ public class CidadeController {
 	/**
 	 * Endpoint para remover uma cidade
 	 * @author Rafael Martins de Padua
-	 * @param cidadeId
-	 * @return
+	 * @param cidadeId parâmetro referente ao ID da cidade
+	 * @return Retorna o status OK, caso a solicitação sejá bem sucedida ou
+	 * 		   uma mensagem de erro descrevendo a falha.
 	 */
 	@CrossOrigin
 	@SuppressWarnings("rawtypes")

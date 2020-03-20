@@ -12,7 +12,6 @@ import br.com.compasso.backend.model.ClienteModel;
 
 /**
  * @author Rafael Martins de Padua
- * @Repository
  */
 @SpringBootTest
 public class ClienteRepositoryTest {
@@ -34,12 +33,10 @@ public class ClienteRepositoryTest {
     
     /**
      * Teste para comparar o tamanho da lista de clientes
-     * @throws Exception
      */
 	@Test
-    public void findByNome() throws Exception {
+    public void findByNome() {
 		List<ClienteModel> clientes = clienteRepository.findByNome("Vanessa");
 		assertEquals(clientes.size(),3);
     }
-    
 }
