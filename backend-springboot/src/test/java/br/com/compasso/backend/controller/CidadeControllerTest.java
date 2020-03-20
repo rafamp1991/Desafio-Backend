@@ -191,4 +191,21 @@ public class CidadeControllerTest {
         
         verify(cidadeRepository, times(1)).deleteById(3557154L);
     }
+	
+	/**
+	 * Consulta uma cidade por um nome inexistente
+	 * @author Rafael Martins de Padua
+	 * @throws Exception lança uma exceção informando 
+	 * 					 que o registro não pode ser encontrado.
+	 */
+	@Test
+	public void cidadeNaoExiste() throws Exception {
+		List<CidadeModel> listaCidades = new ArrayList<CidadeModel>();
+		
+	    Mockito.doReturn(listaCidades)
+		.when(cidadeRepository)
+		.findByNome("Tangamandapio");		
+	    mockMvc.perform(MockMvcRequestBuilders.get("/cidade/Tangamandapio"))
+	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.NOT_FOUND.value()));
+	}
 }

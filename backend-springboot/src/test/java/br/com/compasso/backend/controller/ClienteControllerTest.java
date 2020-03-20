@@ -199,4 +199,20 @@ public class ClienteControllerTest {
         
         verify(clienteRepository, times(1)).deleteById(1L);
     }
+	
+	/**
+	 * Consulta um cliente por um ID inexistente
+	 * @author Rafael Martins de Padua
+	 * @throws Exception lança uma exceção informando 
+	 * 					 que o registro não pode ser encontrado.
+	 */
+	@Test
+	public void clienteNaoExiste() throws Exception {
+	    
+	    Mockito.doReturn(Optional.empty())
+		.when(clienteRepository)
+		.findById(9999L);		
+	    mockMvc.perform(MockMvcRequestBuilders.get("/clienteId/9999"))
+	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.NOT_FOUND.value()));
+	}
 }

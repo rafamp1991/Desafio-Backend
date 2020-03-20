@@ -164,4 +164,20 @@ public class EstadoControllerTest {
         
         verify(estadoRepository, times(1)).deleteById(12L);
     }
+	
+	/**
+	 * Consulta um estado por um nome inexistente
+	 * @author Rafael Martins de Padua
+	 * @throws Exception lança uma exceção informando 
+	 * 					 que o registro não pode ser encontrado.
+	 */
+	@Test
+	public void estadoNaoExiste() throws Exception {
+		
+	    Mockito.doReturn(estadoModel)
+		.when(estadoRepository)
+		.findByNome("Texas");		
+	    mockMvc.perform(MockMvcRequestBuilders.get("/estadoNome/Texas"))
+	            .andExpect(MockMvcResultMatchers.status().is(HttpStatus.NOT_FOUND.value()));
+	}
 }
