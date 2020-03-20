@@ -41,6 +41,10 @@ No projeto consta um diretório nomeado "postman_backup", onde há um arquivo pa
 * Com a aplicação inicializada, na sequência acesse a seguinte URL em seu navegador:
 	* http://localhost:8080/swagger-ui.html
 
+## Como acessar a documentação do Javadoc
+
+* As páginas da documentação estão armazenadas no diretório target/site/api-docs, nesse caminho a um arquivo index.html. Abra o em seu navegador web.
+
 ## Rotas
 
 ### CIDADE
