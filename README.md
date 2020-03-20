@@ -24,7 +24,7 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 
 ## Como testar a aplicação
 
-* No Repositório do github, dentro do diretório database_backup se encontra o arquivo [database.backup](https://github.com/rafamp1991/DesafioBackend/tree/master/database_backup), contendo o backup do banco de dados com as tabelas populadas.
+* No diretório database_backup se encontra o arquivo [database.backup](https://github.com/rafamp1991/DesafioBackend/tree/master/database_backup), contendo o arquivo para importar o banco de dados.
 
 * Para rodar a aplicação abra um prompt de comando e insira o caminho do diretório em que esta o projeto, em seguida execute o seguinte comando:
 	* mvn spring-boot:run
