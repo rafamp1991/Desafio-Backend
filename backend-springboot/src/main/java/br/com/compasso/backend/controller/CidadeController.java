@@ -189,8 +189,8 @@ public class CidadeController {
 			} else {
 				return ResponseEntity.status(HttpStatus.CONFLICT).body("status: 409."
 						+ "\nerror: Conflict."
-						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito. "
-						+ "atual do recurso de destino.");
+						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito com o estado atual do recurso."
+						+ "\nA cidade informada já existe!");
 			}
 			
 		} catch (Exception e) {

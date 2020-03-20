@@ -133,8 +133,8 @@ public class EstadoController {
 			} else {
 				return ResponseEntity.status(HttpStatus.CONFLICT).body("status: 409."
 						+ "\nerror: Conflict."
-						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito com o estado "
-						+ "atual do recurso de destino.");
+						+ "\nmessage: A solicitação não pôde ser concluída devido a um conflito com o estado atual do recurso."
+						+ "\nO estado informado já existe!");
 			}
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("status: 400."
