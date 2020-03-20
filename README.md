@@ -51,43 +51,43 @@ No projeto consta um diretório nomeado "postman_backup", onde há um arquivo pa
 
 * Listar todas as cidades: http://localhost:8080/cidades
 	
-* Consultar cidade pelo nome: http://localhost:8080/cidade/Lages
+* Consultar cidade pelo nome: http://localhost:8080/cidade/ + nome da cidade
 
-* Listar cidades pelo nome do Estado: http://localhost:8080/cidade/estadoNome/Santa Catarina
+* Listar cidades pelo nome do Estado: http://localhost:8080/cidade/estadoNome/ + nome do estado
 
 * Cadastrar cidade: http://localhost:8080/cidade	
 	
-* Atualizar cidade: http://localhost:8080/cidade/ + id
+* Atualizar cidade: http://localhost:8080/cidade/ + id da cidade
 	
-* Deletar cidade: http://localhost:8080/cidade + id
+* Deletar cidade: http://localhost:8080/cidade + id da cidade
 
 ### ESTADO
 
 * Listar todos os estados: http://localhost:8080/estados
 	
-* Consultar estado pelo nome: http://localhost:8080/estadoNome/Acre
+* Consultar estado pelo nome: http://localhost:8080/estadoNome/ + nome do estado
 	
-* Consultar estado pelo UF: http://localhost:8080/estadoUf/RJ
+* Consultar estado pelo UF: http://localhost:8080/estadoUf/ + uf do estado
 
 * Cadastrar estado: http://localhost:8080/estado
 	
-* Atualizar estado: http://localhost:8080/estado/ + id
+* Atualizar estado: http://localhost:8080/estado/ + id do estado
 	
-* Deletar estado: http://localhost:8080/estado/ + id
+* Deletar estado: http://localhost:8080/estado/ + id do estado
 
 ### CLIENTE
 
 * Listar todos os clientes: http://localhost:8080/clientes
 	
-* Consultar cliente pelo nome: http://localhost:8080/clienteNome/	+ nome
+* Consultar cliente pelo nome: http://localhost:8080/clienteNome/ + nome do cliente
 
-* Consultar cliente pelo id: http://localhost:8080/clienteId/ + id
+* Consultar cliente pelo id: http://localhost:8080/clienteId/ + id do cliente
 	
 * Cadastrar cliente: http://localhost:8080/cliente
 	
-* Atualizar cliente: http://localhost:8080/cliente/ + id
+* Atualizar cliente: http://localhost:8080/cliente/ + id do cliente
 	
-* Deletar cliente: http://localhost:8080/cliente/ + id
+* Deletar cliente: http://localhost:8080/cliente/ + id do cliente
 
 ## Licença
 
