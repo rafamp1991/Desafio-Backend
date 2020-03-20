@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.is;
 
+import br.com.compasso.backend.model.CidadeModel;
 import br.com.compasso.backend.model.ClienteModel;
 import br.com.compasso.backend.repository.CidadeRepository;
 import br.com.compasso.backend.repository.ClienteRepository;
@@ -139,6 +140,13 @@ public class ClienteControllerTest {
 	@Test
     public void clienteUpdate() throws Exception {
 		
+		CidadeModel cidadeModel = new CidadeModel();
+        cidadeModel.setCidadeId(1500107L);
+        cidadeModel.setNome("Abaetetuba");
+        cidadeModel.setLatitude(-1.72183);
+        cidadeModel.setLongitude(-48.8788);
+        cidadeModel.setCapital(false);
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		LocalDate dt1 = LocalDate.parse("28/01/2002", formatter);
 		
@@ -149,7 +157,7 @@ public class ClienteControllerTest {
 		atualizaCliente.setSexo("masculino");
 		atualizaCliente.setDataNascimento(dt1);
 		atualizaCliente.setIdade(18);
-		atualizaCliente.getCidadeModel(cidadeRepository.findById(1500107L));
+		atualizaCliente.setCidadeModel(cidadeModel);
 		
 	    when(clienteRepository.findById(20L)).thenReturn(Optional.of(atualizaCliente));
 	    when(clienteRepository.save(any(ClienteModel.class))).thenReturn(atualizaCliente);
@@ -163,7 +171,8 @@ public class ClienteControllerTest {
 	            .andExpect(jsonPath("$.sobrenome", is("Ramos")))
 	            .andExpect(jsonPath("$.sexo", is("masculino")))
 	            .andExpect(jsonPath("$.dataNascimento", is("28-01-2002")))
-	            .andExpect(jsonPath("$.idade", is(18)));
+	            .andExpect(jsonPath("$.idade", is(18)))
+	            .andExpect(jsonPath("$.cidadeModel.cidadeId", is(1500107)));
     }
 	
 	/**

@@ -1,8 +1,6 @@
 package br.com.compasso.backend.model;
 
 import java.time.LocalDate;
-import java.util.Optional;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -66,7 +64,7 @@ public class ClienteModel {
 	@JoinColumn(name = "id_cidade")
 	private CidadeModel cidadeModel;
 
-	public CidadeModel getCidadeModel(Optional<CidadeModel> optional) {
+	public CidadeModel getCidadeModel() {
 		return cidadeModel;
 	}
 
